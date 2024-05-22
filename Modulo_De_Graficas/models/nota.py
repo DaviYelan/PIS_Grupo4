@@ -46,4 +46,4 @@ class Nota:
         return nota
     
     def __str__(self):
-        return f"ID: {self._id}, Nota Final: {self._notaFinal}, Fecha : {self._fecha}"
+        return f"ID: {self._id}, Nota Final: {self._notaFinal}, Fechaa : {self._fecha}"
