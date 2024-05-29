@@ -6,7 +6,6 @@ class Cursa:
         self.__idEstudiante = 0
         self.__idAsignacion = 0
 
-
     @property
     def _id(self):
         return self.__id
@@ -46,8 +45,7 @@ class Cursa:
     @_idAsignacion.setter
     def _idAsignacion(self, value):
         self.__idAsignacion = value
-
-
+   
     @property
     def serializable(self):
         return {
@@ -68,4 +66,4 @@ class Cursa:
         return cursa
     
     def __str__(self):
-        return f"Cursa: {self._paralelo} {self._codigoAula} {self._idEstudiante} {self._idAsignacion}"
+        return f"{self._id} {self._paralelo} {self._codigoAula} {self._idEstudiante} {self._idAsignacion}"

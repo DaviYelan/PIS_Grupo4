@@ -1,7 +1,7 @@
 class Materia:
     def __init__(self):
-        self.__id = 0
-        self.__nombre = " "
+        self.__id = 0  
+        self.__nombre = ""
         self.__numeroHoraSemana = 0
 
     @property
@@ -35,13 +35,10 @@ class Materia:
             "nombre": self._nombre,
             "numeroHoraSemana": self._numeroHoraSemana
         }
-
+    
     def deserializar(data):
         materia = Materia()
         materia._id = data["id"]
         materia._nombre = data["nombre"]
         materia._numeroHoraSemana = data["numeroHoraSemana"]
-        return materia      
-    
-    def __str__(self):
-        return f"Materia: {self._nombre}"
+        return materia

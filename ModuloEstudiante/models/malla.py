@@ -44,4 +44,4 @@ class Malla:
         return malla
     
     def __str__(self):
-        return f"Malla: {self._nombre}"
+        return f"{self._id} {self._nombre} {self._estado}"
