@@ -6,7 +6,7 @@ mt = MateriaDaoControl()
 
 try:
     mt._materia._nombre = 'Base de Datos'
-    mt._materia.__numeroHoraSemana = 5
+    mt._materia._numeroHoraSemana = 3
     mt.save
 
 except Exception as error:

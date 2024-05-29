@@ -1,9 +1,8 @@
-from models.malla import Malla
 class Ciclo:
     def __init__(self):
         self.__id = 0
-        self.__nombre = " "
-        self.__malla = Malla()
+        self.__nombre = ""
+
 
     @property
     def _id(self):
@@ -22,14 +21,6 @@ class Ciclo:
         self.__nombre = value
 
     @property
-    def _malla(self):
-        return self.__malla
-
-    @_malla.setter
-    def _malla(self, value):
-        self.__malla = value
-
-    @property
     def serializable(self):
         return {
             "id": self._id,
@@ -43,4 +34,4 @@ class Ciclo:
         return ciclo
     
     def __str__(self):
-        return f"Ciclo: {self._nombre}"
+        return f"{self._id} {self._nombre}"
