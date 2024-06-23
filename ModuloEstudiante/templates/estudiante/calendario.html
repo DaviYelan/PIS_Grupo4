@@ -2,6 +2,7 @@
 
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/calendario.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static',filename='img/unl.png')}}" />
 <div class="container">
     <div class="left">
         <div class="calendar">
@@ -22,7 +23,7 @@
             <div class="days"></div>
             <div class="goto-today">
                 <div class="goto">
-                    <input type="text" placeholder="mm/yyyy" class="date-input">
+                    <input type="text" placeholder="mm/yyyy" class="date-input" />
                     <button class="goto-btn">Go</button>
                 </div>
                 <button class="today-btn">Today</button>
@@ -42,13 +43,13 @@
             </div>
             <div class="add-event-body">
                 <div class="add-event-input">
-                    <input type="text" placeholder="Event Name" class="event-name">
+                    <input type="text" placeholder="Event Name" class="event-name" />
                 </div>
                 <div class="add-event-input">
-                    <input type="text" placeholder="Event Time From" class="event-time-from">
+                    <input type="text" placeholder="Event Time From" class="event-time-from" />
                 </div>
                 <div class="add-event-input">
-                    <input type="text" placeholder="Event Time To" class="event-time-to">
+                    <input type="text" placeholder="Event Time To" class="event-time-to" />
                 </div>
             </div>
             <div class="add-event-footer">
@@ -59,6 +60,9 @@
     <button class="add-event">
         <i class="fas fa-plus"></i>
     </button>
+</div>
+<div class="credits">
+    <p>CD4</p>
 </div>
 <script src="{{ url_for('static', filename='js/calendario.js') }}"></script>
 {% endblock %}

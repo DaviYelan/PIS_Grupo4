@@ -5,10 +5,6 @@ router = Blueprint('router', __name__)
 
 #GET es para presentar datos
 #POST guardar datos, modificar datos y el inicio de sesion
-#
-@router.route('/inicio')
-def homeinicio():
-    return render_template("index.html")
 
 @router.route('/calendario')
 def calendario():
@@ -16,4 +12,8 @@ def calendario():
 
 @router.route('/')
 def home():
+    return render_template("index.html")
+
+@router.route('/principal')
+def principal():
     return render_template("index.html")
