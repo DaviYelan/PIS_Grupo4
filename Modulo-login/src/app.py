@@ -24,7 +24,7 @@ def home():
     return redirect("/home")
 
 @app.route('/home')
-def autenticacion():
+def home_():
     return render_template("home/home.html")
 
 @app.route('/about')
