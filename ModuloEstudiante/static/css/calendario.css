@@ -1,5 +1,5 @@
 :root {
-  --primary-clr: #b38add;
+  --primary-clr: #FFEC96FF;
 }
 * {
   margin: 0;
@@ -129,7 +129,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--primary-clr);
+  color: #000;
   border: 1px solid #f5f5f5;
 }
 .calendar .days .day:nth-child(7n + 1) {
@@ -536,19 +536,28 @@ body {
     padding: 20px;
   }
 }
+.container {
+  position: relative;
+  min-height: 100vh; /* Ensure the container takes the full height */
+}
 
 .credits {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   text-align: center;
-    padding: 10px;
-    background-color: #FFEC96FF; /* Puedes cambiar el color de fondo si lo deseas */
-    position: relative;
-    bottom: 0;
-    width: 100%;
+  padding: 10px;
+  font-size: 12px;
+  color: #000;
+  background-color: #FFEC96FF;
 }
+
 .credits a {
   text-decoration: none;
   font-weight: 600;
 }
+
 .credits a:hover {
   text-decoration: underline;
 }
