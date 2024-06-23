@@ -1,10 +1,12 @@
+from models.enumEstadoPeriodo import EnumEstadoPeriodo
+import datetime
 class PeriodoAcademico:
-    def __init__(self, nombre, fechaInicio, fechaFin):
+    def __init__(self):
         self.__id = 0
-        self.__nombre = nombre
-        self.__fechaInicio = fechaInicio
-        self.__fechaFin = fechaFin
-        self.__estadoPa = True
+        self.__nombre = ''
+        self.__fechaInicio = datetime
+        self.__fechaFin = datetime
+        self.__tipoEstado = EnumEstadoPeriodo
 
     @property
     def _id(self):
@@ -39,12 +41,14 @@ class PeriodoAcademico:
         self.__fechaFin = value
 
     @property
-    def _estadoPa(self):
-        return self.__estadoPa
+    def _tipoEstado(self):
+        return self.__tipoEstado
 
-    @_estadoPa.setter
-    def _estadoPa(self, value):
-        self.__estadoPa = value
+    @_tipoEstado.setter
+    def _tipoEstado(self, value):
+        self.__tipoEstado = value
+
+
 
     @property
     def serializable(self):
@@ -53,14 +57,17 @@ class PeriodoAcademico:
             "nombre": self._nombre,
             "fechaInicio": self._fechaInicio,
             "fechaFin": self._fechaFin,
-            "estadoPa": self._estadoPa
+            "tipoEstado": self._tipoEstado
         }
     
     def deserializar(data):
-        periodoAcademico = PeriodoAcademico(data["nombre"], data["fechaInicio"], data["fechaFin"])
-        periodoAcademico._id = data["id"]
-        periodoAcademico._estadoPa = data["estadoPa"]
-        return periodoAcademico
-    
+        periodo = PeriodoAcademico()
+        periodo._id = data["id"]
+        periodo._nombre = data["nombre"]
+        periodo._fechaInicio = data["fechaInicio"]
+        periodo._fechaFin = data["fechaFin"]
+        periodo._tipoEstado = data["tipoEstado"]
+        return periodo
+
     def __str__(self):
-        return f"Periodo Académico: {self._nombre} ({self._fechaInicio} - {self._fechaFin})"
+        return f"{self._id} {self._nombre} {self._fechaInicio} {self._fechaFin} {self._tipoEstado}"

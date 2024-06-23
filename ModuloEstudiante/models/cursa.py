@@ -2,9 +2,9 @@ class Cursa:
     def __init__(self):
         self.__id = 0
         self.__paralelo = ""
-        self.__codigoAula = ""
         self.__idEstudiante = 0
         self.__idAsignacion = 0
+
 
     @property
     def _id(self):
@@ -21,14 +21,6 @@ class Cursa:
     @_paralelo.setter
     def _paralelo(self, value):
         self.__paralelo = value
-
-    @property
-    def _codigoAula(self):
-        return self.__codigoAula
-
-    @_codigoAula.setter
-    def _codigoAula(self, value):
-        self.__codigoAula = value
 
     @property
     def _idEstudiante(self):
@@ -51,7 +43,6 @@ class Cursa:
         return {
             "id": self._id,
             "paralelo": self._paralelo,
-            "codigoAula": self._codigoAula,
             "idEstudiante": self._idEstudiante,
             "idAsignacion": self._idAsignacion
         }
@@ -60,10 +51,9 @@ class Cursa:
         cursa = Cursa()
         cursa._id = data["id"]
         cursa._paralelo = data["paralelo"]
-        cursa._codigoAula = data["codigoAula"]
         cursa._idEstudiante = data["idEstudiante"]
         cursa._idAsignacion = data["idAsignacion"]
         return cursa
     
     def __str__(self):
-        return f"{self._id} {self._paralelo} {self._codigoAula} {self._idEstudiante} {self._idAsignacion}"
+        return f"{self._id} {self._paralelo} {self._idEstudiante} {self._idAsignacion}"
