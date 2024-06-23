@@ -13,4 +13,4 @@ class Cuenta(UserMixin):
 
     #print(generate_password_hash("grupocuatro"))
     #print(generate_password_hash("lore"))
-    print(generate_password_hash("456"))
+    #print(generate_password_hash("456"))
