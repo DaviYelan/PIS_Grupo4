@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cursos.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/SOL.png') }}" />
+    <title>Cursos Académicos</title>
+</head>
+<body>
+    <section class="home">
+        <div class="main-content">
+            <div class="content">
+                <div class="text-column">
+                    <h1>Cursos Académicos</h1>
+                    <div class="courses">
+                        <!-- Courses will be inserted here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{{ url_for('static', filename='js/cursos.js') }}"></script>
+</body>
+</html>
+{% endblock %}

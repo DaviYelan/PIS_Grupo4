@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="{{url_for('static', filename='img/SOL.png')}}" />
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     
-    <title> SOL</title> 
+    <title>SOL</title> 
 </head>
 <body>
     <nav class="sidebar close">
@@ -32,12 +32,11 @@
 
         <div class="menu-bar">
             <div class="menu">
-                <li class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
-                </li>
-
                 <ul class="menu-links">
+                    <li class="search-box">
+                        <i class='bx bx-search icon'></i>
+                        <input type="text" placeholder="Search...">
+                    </li>
                     <li class="nav-link">
                         <a href="/principal">
                             <i class='bx bx-home-alt icon'></i>
@@ -51,13 +50,19 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="/notificacion">
                             <i class='bx bx-bell icon'></i>
                             <span class="text nav-text">Notificaciones</span>
                         </a>
                     </li>
                     <li class="nav-link">
                         <a href="#">
+                            <i class='bx bx-chat icon'></i>
+                            <span class="text nav-text">Mensajes</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/cursos">
                             <i class='bx bxs-graduation icon'></i>
                             <span class="text nav-text">Cursos</span>
                         </a>
@@ -66,58 +71,57 @@
             </div>
 
             <div class="bottom-content">
-                <li>
-                    <a href="#">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class='bx bx-log-out icon'></i>
+                            <span class="text nav-text">Logout</span>
+                        </a>
+                    </li>
 
-                <li class="mode">
-                    <div class="sun-moon">
-                        <i class='bx bx-moon icon moon'></i>
-                        <i class='bx bx-sun icon sun'></i>
-                    </div>
-                    <span class="mode-text text">Dark mode</span>
-                    <div class="toggle-switch">
-                        <span class="switch"></span>
-                    </div>
-                </li>
+                    <li class="mode">
+                        <div class="sun-moon">
+                            <i class='bx bx-moon icon moon'></i>
+                            <i class='bx bx-sun icon sun'></i>
+                        </div>
+                        <span class="mode-text text">Dark mode</span>
+                        <div class="toggle-switch">
+                            <span class="switch"></span>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
+    
     <section class="home">
-        {% block content %}
-        {% endblock %}
-        <body class="light-mode">
-            <section class="home">
-                <div class="main-content">
-                    <div class="content">
-                        <div class="text-column">
-                            <h1>Bienvenido a Sol</h1>
-                            <p>¡Gestiona el rendimiento académico de tus estudiantes de manera eficiente!</p>
-                            <div class="features">
-                                <div class="feature">
-                                    <i class='bx bx-calendar-check'></i>
-                                    <h2>Calendario Académico</h2>
-                                    <p>Organiza tus fechas importantes como exámenes, entregas de proyectos escolares.</p>
-                                </div>
-                                <div class="feature">
-                                    <i class='bx bx-book-open'></i>
-                                    <h2>Calificaciones</h2>
-                                    <p>Consulta las notas de forma fácil y rápida.</p>
-                                </div>
-                                <div class="feature">
-                                    <i class='bx bx-bell'></i>
-                                    <h2>Notificaciones</h2>
-                                    <p>Recibe notificaciones sobre eventos importantes.</p>
-                                </div>
-                            </div>
-                        </div>
+        <div class="main-content">
+            {% block content %}
+            <div class="text-column">
+                <h1>Bienvenido a Sol</h1>
+                <p>¡Gestiona el rendimiento académico de tus estudiantes de manera eficiente!</p>
+                <div class="features">
+                    <div class="feature">
+                        <i class='bx bx-calendar-check'></i>
+                        <h2>Calendario Académico</h2>
+                        <p>Organiza tus fechas importantes como exámenes, entregas de proyectos escolares.</p>
+                    </div>
+                    <div class="feature">
+                        <i class='bx bx-book-open'></i>
+                        <h2>Calificaciones</h2>
+                        <p>Consulta las notas de forma fácil y rápida.</p>
+                    </div>
+                    <div class="feature">
+                        <i class='bx bx-chat'></i>
+                        <h2>Notificaciones</h2>
+                        <p>Comparte mensajes importantes y mantente conectado.</p>
                     </div>
                 </div>
-            </section>  
+            </div>
+            {% endblock %}
+        </div>
     </section>
+    
     <script src="{{url_for('static', filename='js/area.js')}}"></script>
     <script src="{{url_for('static', filename='js/script.js')}}"></script>
 </body>

@@ -17,3 +17,11 @@ def home():
 @router.route('/principal')
 def principal():
     return render_template("index.html")
+
+@router.route('/notificacion')
+def notificacion():
+    return render_template("estudiante/notificaciones.html")
+
+@router.route('/cursos')
+def cursos():
+    return render_template("estudiante/cursos.html")
