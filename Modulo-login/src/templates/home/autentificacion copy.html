@@ -1,0 +1,115 @@
+{% extends "index.html" %}
+{% block content %}
+<style>
+    body {
+        background-color: #f4f4f4;
+        /* Fondo gris claro */
+        color: #333;
+        /* Texto negro */
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-around;
+        padding: 20px;
+    }
+
+    .card {
+        background-color: #fff;
+        /* Fondo blanco para cada tarjeta */
+        border: 1px solid #ddd;
+        /* Borde gris claro */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 30%;
+        text-align: center;
+    }
+
+    .card img {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        display: block;
+        margin: 0 auto;
+        /* Centra la imagen horizontalmente */
+    }
+
+    .card-title {
+        font-size: 20px;
+        margin-top: 10px;
+        color: #333;
+        /* Texto negro */
+    }
+
+    .btn-success {
+        background-color: #4CAF50;
+        /* Verde */
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .btn-success:hover {
+        background-color: #45a049;
+
+    }
+
+    .limiter-header {
+        height: 204px;
+        width: 90%;
+        background: #8e8181 url(/static/images/bannerunl.jpg) no-repeat center;
+        background-size: auto;
+        background-size: cover;
+        margin: 0 auto;
+        border-bottom: 2px solid #786e6e;
+    }
+
+    .servicio {
+        text-align: center;
+        font-size: 40px;
+        margin-top: 10px;
+        color: #333;
+        background-color: #d6d6d6;
+        /* Fondo blanco para cada tarjeta */
+        border: 1px solid #ddd;
+        /* Borde gris claro */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+</style>
+<div class="limiter-header"></div>
+<h1 class="servicio">Servicio de Autenticación</h1>
+<div class="container">
+    <!-- Docentes -->
+    <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/256/560/560310.png" alt="Docente">
+        <div class="card-title">Docentes</div>
+        <a href="/docenteL" class="btn btn-success">Acceder</a>
+    </div>
+
+    <!-- Estudiantes -->
+    <div class="card">
+        <img src="https://static.vecteezy.com/system/resources/previews/000/356/715/non_2x/vector-male-student-icon.jpg"
+            alt="Estudiante">
+        <div class="card-title">Estudiantes</div>
+        <a href="/estudianteL" class="btn btn-success">Acceder</a>
+    </div>
+
+    <!-- Administrativos -->
+    <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/114/114821.png" alt="Administrativo">
+        <div class="card-title">Administrativos</div>
+        <a href="/admin" class="btn btn-success">Acceder</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,190 @@
+{% extends "index.html" %}
+{% block content %}
+<style>
+    body {
+        background-color: #fff;
+        color: #333;
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .hero-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px;
+        background-color: #d3d3d3; /* Color que sugirieron */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin: 20px;
+    }
+
+    .hero-content {
+        max-width: 50%;
+        padding: 20px;
+        text-align: left;
+    }
+
+    .hero-image {
+        max-width: 50%;
+        text-align: center;
+    }
+
+    .hero-image img {
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-content h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        color: #000;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    .hero-content .btn-primary {
+        background-color: #333;
+        border: none;
+        color: #fff;
+        padding: 15px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        margin-top: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .hero-content .btn-primary:hover {
+        background-color: #000;
+    }
+
+    .features-section {
+        padding: 60px 20px;
+        background-color: #fff;
+        text-align: center;
+    }
+
+    .features-section h2 {
+        font-size: 36px;
+        margin-bottom: 40px;
+        color: #000;
+    }
+
+    .features {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .feature {
+        max-width: 30%;
+        background-color: #d3d3d3;/* Color que sugirieron */
+        margin: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .feature:hover {
+        transform: translateY(-10px);
+    }
+
+    .feature img {
+        margin-bottom: 20px;
+        border-radius: 50%;
+        overflow: hidden;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .feature h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #000;
+    }
+
+    .feature p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    .footer {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+        .hero-section {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .hero-content,
+        .hero-image {
+            max-width: 100%;
+        }
+
+        .feature {
+            max-width: 100%;
+        }
+    }
+</style>
+
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>Aplicación web para seguimiento al desempeño estudiantil</h1>
+        <p>Mejora tu productividad con nuestra aplicación web. Realiza un seguimiento detallado del desempeño
+            estudiantil y toma decisiones informadas para mejorar el aprendizaje. Integrado con herramientas de análisis
+            y reportes avanzados.</p>
+        <a href="#features" class="btn-primary">Descubre más</a>
+    </div>
+    <div class="hero-image">
+        <img src="/static/images/bannerunl.jpg" alt="Seguimiento al desempeño estudiantil">
+    </div>
+</div>
+
+<div class="features-section" id="features">
+    <h2>Características Principales</h2>
+    <div class="features">
+        <div class="feature">
+            <img src="/static/images/img1.jpg" alt="Característica 1">
+            <h3>Analítica Avanzada</h3>
+            <p>Utiliza herramientas de análisis de datos para obtener información valiosa sobre el rendimiento de
+                los
+                estudiantes.</p>
+        </div>
+        <div class="feature">
+            <img src="/static/images/img2.jpg" alt="Característica 2">
+            <h3>Reportes Personalizados</h3>
+            <p>Genera reportes detallados y personalizados que se adaptan a tus necesidades específicas.</p>
+        </div>
+        <div class="feature">
+            <img src="/static/images/img3.jpg" alt="Característica 3">
+            <!-- Cambiar la imagen por la que corresponda -->
+            <h3>Interfaz Intuitiva</h3>
+            <p>Disfruta de una interfaz de usuario intuitiva y fácil de usar.</p>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p>&copy; 2024 Grupo 4. All rights reserved.</p>
+</div>
+{% endblock %}

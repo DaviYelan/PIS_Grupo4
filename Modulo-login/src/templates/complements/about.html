@@ -1,0 +1,142 @@
+{% extends "index.html" %}
+{% block content %}
+
+<title>Sobre Nosotros</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #d2d2d2;
+    }
+    .team-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 0;
+    }
+    .team-member {
+        width: 80%;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .team-member:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .team-member img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin: 20px;
+        transition: transform 0.3s;
+    }
+    .team-member:hover img {
+        transform: scale(1.1);
+    }
+    .team-member .info {
+        flex: 1;
+        padding: 20px;
+    }
+    .team-member .info h2 {
+        margin: 0;
+        font-size: 1.8em;
+        color: #333;
+    }
+    .team-member .info p {
+        margin: 0;
+        font-size: 1em;
+        color: #666;
+    }
+    .team-background {
+        background: url('/static/images/about.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+        text-align: center;
+        padding: 100px 0;
+        font-size: 5em;
+        font-weight: bold;
+    }
+
+</style>
+
+<section>
+    <div class="team-background">Sobre Nosotros</div>
+</section>
+
+<section>
+    <div class="team-container">
+        <!-- Integrante 1 -->
+        <div class="team-member">
+            <img src="/static/images/auth/miguel.jpg" alt="Foto de Miguel Luna" data-toggle="collapse" data-target="#collapse1">
+            <div class="info">
+                <h2>Miguel Luna</h2>
+            </div>
+            <div id="collapse1" class="collapse" data-parent=".team-container">
+                <div class="card-body">
+                    <strong>Miguel Luna</strong> El otaku de la programación, estudiante de la carrera de Ingeniería en Sistemas de la Universidad Nacional de Loja, actualmente cursando el tercer ciclo de la carrera.
+                </div>
+            </div>
+        </div>
+        <!-- Integrante 2 -->
+        <div class="team-member flex-row-reverse">
+            <img src="/static/images/auth/luis.jpg" alt="Foto de Luis Armijos" data-toggle="collapse" data-target="#collapse2">
+            <div class="info">
+                <h2>Luis Armijos</h2>
+            </div>
+            <div id="collapse2" class="collapse" data-parent=".team-container">
+                <div class="card-body">
+                    Luis Armijos, estudiante de la carrera de Ingeniería en Sistemas de la Universidad Nacional de Loja, actualmente cursando el tercer ciclo de la carrera.
+                </div>
+            </div>
+        </div>
+        <!-- Integrante 3 -->
+        <div class="team-member">
+            <img src="/static/images/auth/david.jpg" alt="Foto de David Guamán" data-toggle="collapse" data-target="#collapse3">
+            <div class="info">
+                <h2>David Guamán</h2>
+            </div>
+            <div id="collapse3" class="collapse" data-parent=".team-container">
+                <div class="card-body">
+                    David Guamán, estudiante de la carrera de Ingeniería en Sistemas de la Universidad Nacional de Loja, actualmente cursando el tercer ciclo de la carrera.
+                </div>
+            </div>
+        </div>
+        <!-- Integrante 4 -->
+        <div class="team-member flex-row-reverse">
+            <img src="/static/images/auth/brandon.jpg" alt="Foto de Brandon Medina" data-toggle="collapse" data-target="#collapse4">
+            <div class="info">
+                <h2>Brandon Medina</h2>
+            </div>
+            <div id="collapse4" class="collapse" data-parent=".team-container">
+                <div class="card-body">
+                    Brandon Medina, el duro del Uno, estudiante de la carrera de Ingeniería en Sistemas de la Universidad Nacional de Loja, actualmente cursando el tercer ciclo de la carrera.
+                </div>
+            </div>
+        </div>
+        <!-- Integrante 5 -->
+        <div class="team-member">
+            <img src="/static/images/auth/darwin.jpg" alt="Foto de Darwin Sarango" data-toggle="collapse" data-target="#collapse5">
+            <div class="info">
+                <h2>Darwin Sarango</h2>
+            </div>
+            <div id="collapse5" class="collapse" data-parent=".team-container">
+                <div class="card-body">
+                    <strong>Hola</strong> soy Darwin Sarango, estudiante de la carrera de Ingeniería en Sistemas de la Universidad Nacional de Loja, actualmente cursando el tercer ciclo de la carrera.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock %}

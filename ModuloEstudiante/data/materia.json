@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "nombre": "Matematicas",
+        "numeroHoraSemana": 0
+    },
+    {
+        "id": 2,
+        "nombre": "Matematicas",
+        "numeroHoraSemana": 0
+    },
+    {
+        "id": 3,
+        "nombre": "Matematicas",
+        "numeroHoraSemana": 4
+    },
+    {
+        "id": 4,
+        "nombre": "Base de Datos",
+        "numeroHoraSemana": 3
+    }
+]
