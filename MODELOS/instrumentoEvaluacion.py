@@ -3,14 +3,27 @@ class InstrumentoEvaluacion:
         self.id = id
         self.descripcion = descripcion
 
-    def get_id(self):
-        return self.id
+    @property
+    def id(self):
+        return self._id
 
-    def set_id(self, value):
-        self.id = value
+    @id.setter
+    def id(self, value):
+        if isinstance(value, int) and value > 0:
+            self._id = value
+        else:
+            raise ValueError("ID debe ser un entero positivo")
 
-    def get_descripcion(self):
-        return self.descripcion
+    @property
+    def descripcion(self):
+        return self._descripcion
 
-    def set_descripcion(self, value):
-        self.descripcion = value
+    @descripcion.setter
+    def descripcion(self, value):
+        if isinstance(value, str) and value:
+            self._descripcion = value
+        else:
+            raise ValueError("Descripción debe ser una cadena no vacía")
+
+    def __str__(self):
+        return f"InstrumentoEvaluacion(id={self.id}, descripcion={self.descripcion})"

@@ -81,6 +81,3 @@ class Persona:
     @_cedula.setter
     def _cedula(self, value):
         self.__cedula = value
-
-
-

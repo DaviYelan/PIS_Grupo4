@@ -6,3 +6,6 @@ class ComponenteRubrica(Enum):
     APE = "APE"
     AA = "AA"
     EVALUACION = "EVALUACION"
+
+    def __str__(self):
+        return self.value

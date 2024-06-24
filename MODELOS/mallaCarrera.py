@@ -49,5 +49,3 @@ class MallaCarrera:
         return "Usuario: " + self._nombre + " " + self._id  + "\n"
     
     __repr__ = __str__
-
-

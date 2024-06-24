@@ -1,6 +1,5 @@
 from datetime import date
 
-
 class Nota:
     def __init__(self, id: int, nota: float, notaFinalUnidad: float, fecha: date):
         self.id = id
@@ -8,26 +7,46 @@ class Nota:
         self.notaFinalUnidad = notaFinalUnidad
         self.fecha = fecha
 
-    def get_id(self):
-        return self.id
+    @property
+    def id(self):
+        return self._id
 
-    def set_id(self, value):
-        self.id = value
+    @id.setter
+    def id(self, value):
+        if isinstance(value, int) and value > 0:
+            self._id = value
+        else:
+            raise ValueError("ID debe ser un entero positivo")
 
-    def get_nota(self):
-        return self.nota
+    @property
+    def nota(self):
+        return self._nota
 
-    def set_nota(self, value):
-        self.nota = value
+    @nota.setter
+    def nota(self, value):
+        if 0 <= value <= 10:  
+            self._nota = value
+        else:
+            raise ValueError("Nota debe estar entre 0 y 10")
 
-    def get_notaFinalUnidad(self):
-        return self.notaFinalUnidad
+    @property
+    def notaFinalUnidad(self):
+        return self._notaFinalUnidad
 
-    def set_notaFinalUnidad(self, value):
-        self.notaFinalUnidad = value
+    @notaFinalUnidad.setter
+    def notaFinalUnidad(self, value):
+        if 0 <= value <= 10:  
+            self._notaFinalUnidad = value
+        else:
+            raise ValueError("Nota final debe estar entre 0 y 10")
 
-    def get_fecha(self):
-        return self.fecha
+    @property
+    def fecha(self):
+        return self._fecha
 
-    def set_fecha(self, value):
-        self.fecha = value
+    @fecha.setter
+    def fecha(self, value):
+        if isinstance(value, date):
+            self._fecha = value
+        else:
+            raise ValueError("Fecha debe ser un objeto de tipo date")
