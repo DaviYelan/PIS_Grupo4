@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="custom-container">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-black text-center mb-4">AGREGAR MATERIA</h2>
+        <a href="/accionMateria" class="btn btn-success mb-3">VOLVER</a>
+        <form id="form" class="custom-form booking-form" action="/registrarMateria/guardar" method="post" role="form">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <input type="text" name="nombre" class="form-control" placeholder="Nombre" required>
+                </div>
+                <div class="col-12 mb-3">
+                    <input type="text" name="codigo" class="form-control" placeholder="Codigo" required>
+                </div>
+                <div class="col-12 mb-3">
+                    <input type="text" name="horaSemanal" class="form-control" placeholder="Hora Semanal" required>
+                </div>
+                <div class="col-12 mb-3">
+                    <input type="text" name="nombCiclo" class="form-control" placeholder="Ciclo" required>
+                </div>
+                
+                <div class="col-12 text-center">
+                    <button id="boton" type="submit" class="form-control btn btn-success">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<style>
+    .custom-container {
+        position: absolute; /* Permite moverlo libremente */
+        top: 50px; /* Ajusta según sea necesario */
+        left: 50px; /* Ajusta según sea necesario */
+        max-width: 600px;
+        width: 100%;
+        z-index: 1000; /* Asegura que esté por encima de otros elementos */
+        background-color: white; /* Fondo blanco para destacar */
+        border: 1px solid #ccc; /* Borde para mejor visibilidad */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para el efecto */
+        padding: 20px; /* Espaciado interno */
+        border-radius: 10px; /* Esquinas redondeadas */
+    }
+    
+    .card {
+        margin: 0; /* Elimina márgenes dentro del contenedor */
+    }
+    </style>
+    
+{% endblock %}
