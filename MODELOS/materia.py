@@ -1,10 +1,10 @@
 class Materia:
     def __init__(self):
-        self.__id = 0  
-        self.__nombre = ""
-        self.__numeroHoraSemana = 0
-        self.__ciclo = ''
-
+        self.__id = ""
+        self.__nombre =""
+        self.__codigo= ""
+        self.__horaSemanal= 0.0
+        self.__nombCiclo= ""
 
     @property
     def _id(self):
@@ -23,37 +23,53 @@ class Materia:
         self.__nombre = value
 
     @property
-    def _numeroHoraSemana(self):
-        return self.__numeroHoraSemana
+    def _codigo(self):
+        return self.__codigo
 
-    @_numeroHoraSemana.setter
-    def _numeroHoraSemana(self, value):
-        self.__numeroHoraSemana = value
-
-    @property
-    def _ciclo(self):
-        return self.__ciclo
-
-    @_ciclo.setter
-    def _ciclo(self, value):
-        self.__ciclo = value
+    @_codigo.setter
+    def _codigo(self, value):
+        self.__codigo = value
 
     @property
-    def serializable(self):
+    def _horaSemanal(self):
+        return self.__horaSemanal
+
+    @_horaSemanal.setter
+    def _horaSemanal(self, value):
+        self.__horaSemanal = value
+
+    @property
+    def _nombCiclo(self):
+        return self.__nombCiclo
+
+    @_nombCiclo.setter
+    def _nombCiclo(self, value):
+        self.__nombCiclo = value
+
+    
+
+    @property
+    def serialize(self):
         return {
             "id": self._id,
             "nombre": self._nombre,
-            "numeroHoraSemana": self._numeroHoraSemana,
-            "ciclo": self._ciclo
+            "codigo": self._codigo,
+            "horaSemanal": self._horaSemanal,
+            "nombCiclo": self._nombCiclo
+            
         }
-    
-    def deserializar(data):
+
+    def deserializar(self, data):
         materia = Materia()
         materia._id = data["id"]
         materia._nombre = data["nombre"]
-        materia._numeroHoraSemana = data["numeroHoraSemana"]
-        materia._ciclo = data["ciclo"]
+        materia._codigo = data["codigo"]
+        materia._horaSemanal = data["horaSemanal"]
+        materia._nombCiclo = data["nombCiclo"]
+        
         return materia
     
-    def __str__(self):
-        return f"{self._id} {self._nombre} {self._numeroHoraSemana} {self._ciclo}"
+    def __str__(self) -> str:
+        return "Usuario: " + self._nombre + " " + self._codigo + " Monto:" + str(self._horaSemanal) + "Ciclo:" +self._nombCiclo+"\n"
+    
+    __repr__ = __str__
