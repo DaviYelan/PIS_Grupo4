@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+{% block content %}
+    <title>Tabla de Gráficas con Chart.js</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/proyeccion.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Tabla de Gráficas</h1>
+        <div class="chart-container">
+            <canvas id="chart1"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="chart2"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="chart3"></canvas>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/proyeccion.js')}}"></script>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MODULO-MENSAJES</title>
+
+<body>
+    <div>
+        {% include 'tempsMensajes/includes/links_css.html' %}
+        {% include 'tempsMensajes/includes/links_js.html' %}
+    </div>
+</body>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f9f9f9;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        flex-direction: column;
+    }
+
+    .chat-button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    .chat-button:hover {
+        background-color: #0056b3;
+    }
+
+    .rectangulo {
+        width: 1500px;
+        height: 550px;
+        background-color: #f0f0f0;
+        box-shadow: 0 0 75px rgba(0, 0, 0, 0.3);
+        margin: 1px auto;
+        padding: 400px;
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0);
+        transform-origin: center;
+        transition: opacity 1s ease-in-out;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .visible {
+        opacity: 1;
+        pointer-events: auto;
+        animation: grow 2s ease-in-out forwards;
+    }
+
+    @keyframes drip {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        100% {
+            transform: translate(-50%, calc(50% + 200px)) scale(0.4);
+        }
+    }
+
+    .drip-animation {
+        animation: drip 1s ease-in-out forwards;
+    }
+
+    @keyframes grow {
+        0% {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+        }
+
+        50% {
+            width: 200px;
+            height: 200px;
+            border-radius: 25%;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        100% {
+            width: 1500px;
+            height: 550px;
+            border-radius: 0;
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
+
+    #logo {
+        width: 120px;
+        height: auto;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 100;
+        transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+    }
+
+    .logo-show {
+        opacity: 1;
+    }
+
+    #rectangulo nav {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    #rectangulo.fade-in {
+        opacity: 1;
+        /* Se vuelve visible */
+    }
+
+    .home-page__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 0%;
+        width: 200%;
+        padding: 5px;
+    }
+
+    .container-fluid {
+        height: calc(100% - 40px);
+        /* Adjust based on your header/footer size */
+    }
+
+    /* Animación personalizada */
+    @keyframes aparecer {
+        0% {
+            opacity: -100;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .bienvenida {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 60px;
+        color: #333;
+        z-index: 1000;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+</head>
+
+
+<body>
+    <div>
+        <a href="#" id="chat-button" class="chat-button">SALA DE CHAT</a>
+    </div>
+    <div id="rectangulo" class="rectangulo">
+        <img src="static/staticMensajes/logo.png" alt="Logo" id="logo">
+    </div>
+
+    <script>
+        const chatButton = document.getElementById('chat-button');
+        const rectangulo = document.getElementById('rectangulo');
+        const logo = document.getElementById('logo');
+        const bienvenida = document.querySelector('.bienvenida');
+
+
+        chatButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            rectangulo.classList.add('visible');
+            logo.classList.add('logo-show');
+
+            rectangulo.addEventListener('animationend', function () {
+                logo.classList.add('drip-animation');
+                setTimeout(function () {
+                    bienvenida.style.opacity = '1'; // Mostrar texto de bienvenida después de 2 segundos
+                }, 10000);
+            });
+        });
+
+    </script>
+</body>
+
+
+</html>
