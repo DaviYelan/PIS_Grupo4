@@ -1,14 +1,14 @@
-{% extends "index.html" %}
+{% extends "tempsEstudiante/index.html" %}
 {% block content %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/cursos.css') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/SOL.png') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='staticEstudiante/css/cursos.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='staticEstudiante/img/SOL.png') }}" />
     <!DOCTYPE html>
 
 </head>
 <body>
     <div class="container">
         <div class="course-card" onclick="location.href='/progreso'">
-            <img src="{{ url_for('static', filename='img/cursos.jpg')}}" alt="Estructura de Datos">
+            <img src="{{ url_for('static', filename='staticEstudiante/img/cursos.jpg')}}" alt="Estructura de Datos">
             <div class="course-info">
                 <span class="faculty">Facultad de la Energía, las Industrias y los Recursos Naturales no Renovables</span>
                 <h2>A - Estructura de Datos (MAR24-AGOS24)</h2>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="course-card" onclick="location.href='/progreso'">
-            <img src="{{ url_for('static', filename='img/cursos.jpg')}}" alt="Arquitectura de Ordenadores">
+            <img src="{{ url_for('static', filename='staticEstudiante/img/cursos.jpg')}}" alt="Arquitectura de Ordenadores">
             <div class="course-info">
                 <span class="faculty">Facultad de la Energía, las Industrias y los Recursos Naturales no Renovables</span>
                 <h2>A - Arquitectura de Ordenadores (MAR24-AGOS24)</h2>
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="course-card" onclick="location.href='/progreso'">
-            <img src="{{ url_for('static', filename='img/cursos.jpg')}}" alt="Base de Datos">
+            <img src="{{ url_for('static', filename='staticEstudiante/img/cursos.jpg')}}" alt="Base de Datos">
             <div class="course-info">
                 <span class="faculty">Facultad de la Energía, las Industrias y los Recursos Naturales no Renovables</span>
                 <h2>A - Base de Datos (MAR24-AGOS24)</h2>
@@ -80,7 +80,7 @@
             </div>
         </div>
         <div class="course-card" onclick="location.href='/progreso'">
-            <img src="{{ url_for('static', filename='img/cursos.jpg')}}" alt="Requisitos de Software">
+            <img src="{{ url_for('static', filename='staticEstudiante/img/cursos.jpg')}}" alt="Requisitos de Software">
             <div class="course-info">
                 <span class="faculty">Facultad de la Energía, las Industrias y los Recursos Naturales no Renovables</span>
                 <h2>A - Requisitos de Software (MAR24-AGOS24)</h2>
@@ -104,7 +104,7 @@
             </div>
         </div>
         <div class="course-card" onclick="location.href='ingles1.html'">
-            <img src="{{ url_for('static', filename='img/cursos.jpg')}}" alt="Inglés 1">
+            <img src="{{ url_for('static', filename='staticEstudiante/img/cursos.jpg')}}" alt="Inglés 1">
             <div class="course-info">
                 <span class="faculty">Facultad de la Educación, del Arte y la Comunicación</span>
                 <h2>O - INGLES 1 (MAR24-AGOS24-ID)</h2>
@@ -128,7 +128,7 @@
             </div>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='js/cursos.js') }}"></script>
+    <script src="{{ url_for('static', filename='staticEstudiante/js/cursos.js') }}"></script>
 </body>
 </html>
 {% endblock %}

@@ -278,7 +278,13 @@ def notificacion():
 def cursos():
     return render_template("tempsEstudiante/estudiante/cursos.html")
 
+@router.route('/progreso')
+def progreso():
+    return render_template("tempsEstudiante/estudiante/progreso.html")
 
+@router.route('/proyeccion')
+def proyeccion():
+    return render_template("tempsEstudiante/estudiante/proyeccion.html")
 
 #------------MODULO DE MENSAJES-----------
 @router.route('/registro')

@@ -1,7 +1,7 @@
-{% extends "index.html" %}
+{% extends "tempsEstudiante/index.html" %}
 {% block content %}
     <title>Tabla de Gráficas con Chart.js</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/proyeccion.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='staticEstudiante/css/proyeccion.css')}}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -17,7 +17,7 @@
             <canvas id="chart3"></canvas>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='js/proyeccion.js')}}"></script>
+    <script src="{{ url_for('static', filename='staticEstudiante/js/proyeccion.js')}}"></script>
 </body>
 </html>
 {% endblock %}

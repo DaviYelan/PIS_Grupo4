@@ -1,8 +1,8 @@
 <!-- Barra de progreso -->
-{% extends "index.html" %}
+{% extends "tempsEstudiante/index.html" %}
 {% block content %}
     <title>Tabla de Progreso del Proyecto</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/progreso.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='staticEstudiante/css/progreso.css')}}">
 </head>
 <body>
     <div class="container">
@@ -68,7 +68,7 @@
             </tbody>
         </table>
     </div>
-    <script src="{{ url_for('static', filename='js/progreso.js')}}"></script>
+    <script src="{{ url_for('static', filename='staticEstudiante/js/progreso.js')}}"></script>
 </body>
 </html>
 
