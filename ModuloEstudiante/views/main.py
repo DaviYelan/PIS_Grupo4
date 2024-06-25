@@ -9,5 +9,9 @@ try:
     mt._materia._numeroHoraSemana = 3
     mt.save
 
+    mt._materia._nombre = 'Programacion'
+    mt._materia._numeroHoraSemana = 4
+    mt.save
+
 except Exception as error:
     print(error)
