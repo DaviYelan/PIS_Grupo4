@@ -1,37 +1,64 @@
+from models.cursa import Cursa
+from models.docente import Docente
+from models.materia import Materia
+from models.rubrica import Rubrica
+
+
 class Asignacion:
-    def __init__(self, id: int, idCurso: int, idMateria: int, idDocente: int, idRubrica: int):
-        self.id = id
-        self.idCurso = idCurso
-        self.idMateria = idMateria
-        self.idDocente = idDocente
-        self.idRubrica = idRubrica
+    def __init__(self):
+        self.__id = 0
+        self.__idCurso = Cursa()
+        self.__idMateria = Materia()
+        self.__idDocente = Docente()
+        self.__idRubrica = Rubrica()
 
-    def get_id(self):
-        return self.id
+    @property
+    def _id(self):
+        return self.__id
 
-    def set_id(self, value):
-        self.id = value
+    @_id.setter
+    def _id(self, value):
+        self.__id = value
 
-    def get_idCurso(self):
-        return self.idCurso
+    @property
+    def _idCurso(self):
+        return self.__idCurso
 
-    def set_idCurso(self, value):
-        self.idCurso = value
+    @_idCurso.setter
+    def _idCurso(self, value):
+        self.__idCurso = value
 
-    def get_idMateria(self):
-        return self.idMateria
+    @property
+    def _idMateria(self):
+        return self.__idMateria
 
-    def set_idMateria(self, value):
-        self.idMateria = value
+    @_idMateria.setter
+    def _idMateria(self, value):
+        self.__idMateria = value
 
-    def get_idDocente(self):
-        return self.idDocente
+    @property
+    def _idDocente(self):
+        return self.__idDocente
 
-    def set_idDocente(self, value):
-        self.idDocente = value
+    @_idDocente.setter
+    def _idDocente(self, value):
+        self.__idDocente = value
 
-    def get_idRubrica(self):
-        return self.idRubrica
+    @property
+    def _idRubrica(self):
+        return self.__idRubrica
 
-    def set_idRubrica(self, value):
-        self.idRubrica = value
+    @_idRubrica.setter
+    def _idRubrica(self, value):
+        self.__idRubrica = value
+
+
+    @property
+    def serializable(self):
+        return {
+            "id": self._id,
+            "idCurso": self._idCurso.serializable,
+            "idMateria": self._idMateria.serializable,
+            "idDocente": self._idDocente.serializable,
+            "idRubrica": self._idRubrica.serializable
+        }

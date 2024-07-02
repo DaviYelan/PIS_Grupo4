@@ -1,16 +1,16 @@
 from typing import Type
 from controllers.dao.daoAdapter import DaoAdapter
-from models.facultad import facultad
+from models.facultad import Facultad
 
-class facultadDaoControl(DaoAdapter):
+class FacultadDaoControl(DaoAdapter):
     def __init__(self):
-        super().__init__(facultad)
+        super().__init__(Facultad)
         self.__facultad = None
 
     @property
     def _facultad(self):
         if self.__facultad is None:
-            self.__facultad = facultad()
+            self.__facultad = Facultad()
         return self.__facultad
 
     @_facultad.setter

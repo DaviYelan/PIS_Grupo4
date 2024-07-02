@@ -2,7 +2,7 @@ from typing import Type
 from controllers.dao.daoAdapter import DaoAdapter
 from models.universidad import Universidad
 
-class universidadDaoControl(DaoAdapter):
+class UniversidadDaoControl(DaoAdapter):
     def __init__(self):
         super().__init__(Universidad)
         self.__universidad = None

@@ -2,7 +2,7 @@ from typing import Type
 from controllers.dao.daoAdapter import DaoAdapter
 from models.cursa import Cursa
 
-class cursaDaoControl(DaoAdapter):
+class CursaDaoControl(DaoAdapter):
     def __init__(self):
         super().__init__(Cursa)
         self.__cursa = None

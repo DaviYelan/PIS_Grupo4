@@ -4,8 +4,6 @@ class Universidad:
         self.__nombre = ''
         self.__ciudad = ''
         self.__direccion = ''
-        self.__pais = ''
-
     @property
     def _id(self):
         return self.__id
@@ -53,7 +51,6 @@ class Universidad:
             "nombre": self._nombre,
             "ciudad": self._ciudad,
             "direccion": self._direccion,
-            "pais": self._pais
         }
     
     def deserializar(data):
@@ -62,8 +59,7 @@ class Universidad:
         universidad._nombre = data["nombre"]
         universidad._ciudad = data["ciudad"]
         universidad._direccion = data["direccion"]
-        universidad._pais = data["pais"]
         return universidad
     
     def __str__(self):
-        return f"{self._id} {self._nombre} {self._ciudad} {self._direccion} {self._pais}"
+        return f"{self._id} {self._nombre} {self._ciudad} {self._direccion}"

@@ -1,7 +1,7 @@
 from typing import Type
 from controllers.dao.daoAdapter import DaoAdapter
 from models.malla import Malla
-class mallaDaoControl(DaoAdapter):
+class MallaDaoControl(DaoAdapter):
     def __init__(self):
         super().__init__(Malla)
         self.__malla = None

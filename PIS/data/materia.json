@@ -1,1 +1,8 @@
-[{"id": 1, "nombre": "Matematica", "codigo": "1212121", "horaSemanal": "12 horas", "nombCiclo": "Ciclo 1"},{"id": 1, "nombre": "Matematica", "codigo": "1212121", "horaSemanal": "12 horas", "nombCiclo": "Ciclo 1"},{"id": 1, "nombre": "Matematica", "codigo": "1212121", "horaSemanal": "12 horas", "nombCiclo": "Ciclo 1"},{"id": 1, "nombre": "Matematica", "codigo": "1212121", "horaSemanal": "12 horas", "nombCiclo": "Ciclo 1"},{"id": 1, "nombre": "Matematica", "codigo": "1212121", "horaSemanal": "12 horas", "nombCiclo": "Ciclo 1"},{"id": 1, "nombre": "David", "codigo": "1212121", "horaSemanal": "12 horas", "nombCiclo": "Ciclo 1"}]
+[
+  {
+    "id": 1,
+    "nombre": "Matematicas",
+    "numeroHoraSemana": 4,
+    "ciclo": "Primer ciclo"
+  }
+]

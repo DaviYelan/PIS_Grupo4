@@ -2,32 +2,60 @@ from datetime import date
 
 
 class Nota:
-    def __init__(self, id: int, nota: float, notaFinalUnidad: float, fecha: date):
-        self.id = id
-        self.nota = nota
-        self.notaFinalUnidad = notaFinalUnidad
-        self.fecha = fecha
+    def __init__(self):
+        self.__id = 0
+        self.__nota = 0.0
+        self.__notaFinalUnidad = 0.0
+        self.__fecha = date
 
-    def get_id(self):
-        return self.id
+    @property
+    def _id(self):
+        return self.__id
 
-    def set_id(self, value):
-        self.id = value
+    @_id.setter
+    def _id(self, value):
+        self.__id = value
 
-    def get_nota(self):
-        return self.nota
+    @property
+    def _nota(self):
+        return self.__nota
 
-    def set_nota(self, value):
-        self.nota = value
+    @_nota.setter
+    def _nota(self, value):
+        self.__nota = value
 
-    def get_notaFinalUnidad(self):
-        return self.notaFinalUnidad
+    @property
+    def _notaFinalUnidad(self):
+        return self.__notaFinalUnidad
 
-    def set_notaFinalUnidad(self, value):
-        self.notaFinalUnidad = value
+    @_notaFinalUnidad.setter
+    def _notaFinalUnidad(self, value):
+        self.__notaFinalUnidad = value
 
-    def get_fecha(self):
-        return self.fecha
+    @property
+    def _fecha(self):
+        return self.__fecha
 
-    def set_fecha(self, value):
-        self.fecha = value
+    @_fecha.setter
+    def _fecha(self, value):
+        self.__fecha = value
+
+    @property
+    def serializable(self):
+        return {
+            "id": self._id,
+            "nota": self._nota,
+            "notaFinalUnidad": self._notaFinalUnidad,
+            "fecha": self._fecha
+        }
+    
+    def deserializar(self, data):
+        nota = Nota()
+        nota._id = data["id"]
+        nota._nota = data["nota"]
+        nota._notaFinalUnidad = data["notaFinalUnidad"]
+        nota._fecha = data["fecha"]
+        return nota
+    
+    def __str__(self):
+        return f"ID: {self._id} Nota: {self._nota} Nota final de la unidad: {self._notaFinalUnidad} Fecha: {self._fecha}"

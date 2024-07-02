@@ -2,7 +2,7 @@ class UsuarioChat:
     def __init__(self):
         self.__id = 0
         self.__fotouser = ''
-        self.__estadoUsuario = bool = False 
+        self.__estadoUsuario = False 
 
     @property
     def _id(self):
@@ -28,3 +28,20 @@ class UsuarioChat:
     def _estadoUsuario(self, value):
         self.__estadoUsuario = value
 
+    @property
+    def serializable(self):
+        return {
+            "id": self._id,
+            "fotouser": self._fotouser,
+            "estadoUsuario": self._estadoUsuario
+        }
+    
+    def deserializar(self, data):
+        usuarioChat = UsuarioChat()
+        usuarioChat._id = data["id"]
+        usuarioChat._fotouser = data["fotouser"]
+        usuarioChat._estadoUsuario = data["estadoUsuario"]
+        return usuarioChat
+
+    def __str__(self):
+        return f"Id: {self._id} Fotouser: {self._fotouser} EstadoUsuario: {self._estadoUsuario}"

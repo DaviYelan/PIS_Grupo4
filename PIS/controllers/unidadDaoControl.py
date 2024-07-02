@@ -2,7 +2,7 @@ from typing import Type
 from controllers.dao.daoAdapter import DaoAdapter
 from models.unidad import Unidad
 
-class unidadDaoControl(DaoAdapter):
+class UnidadDaoControl(DaoAdapter):
     def __init__(self):
         super().__init__(Unidad)
         self.__unidad = None

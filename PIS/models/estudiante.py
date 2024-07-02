@@ -1,38 +1,41 @@
 # estudiante.py
+from models.enumEstadoEstudiante import EnumEstadoEstudiante
 from models.persona import Persona
 
 class Estudiante(Persona):
     def __init__(self):
         super().__init__()
+        self.__estado = EnumEstadoEstudiante
+        self.__matricula = ""
 
     @property
-    def serialize(self):
+    def _estado(self):
+        return self.__estado
+
+    @_estado.setter
+    def _estado(self, value):
+        self.__estado = value
+
+    @property
+    def _matricula(self):
+        return self.__matricula
+
+    @_matricula.setter
+    def _matricula(self, value):
+        self.__matricula = value
+
+    @property
+    def serializable(self):
         return {
-            "id": self._id,
-            "nombre": self._nombre,
-            "apellido": self._apellido,
-            "direccion": self._direccion,
-            "fechaNacimiento": self._fechaNacimiento,
-            "genero": self._genero,
-            "telefono": self._telefono,
-            "tipoIdentificacion": self._tipoIdentificacion,
-            "cedula": self._cedula
+            "estado": self._estado,
+            "matricula": self._matricula
         }
 
     def deserializar(self, data):
         estudiante = Estudiante()
-        estudiante._id = data["id"]
-        estudiante._nombre = data["nombre"]
-        estudiante._apellido = data["apellido"]
-        estudiante._direccion = data["direccion"]
-        estudiante._fechaNacimiento = data["fechaNacimiento"]
-        estudiante._genero = data["genero"]
-        estudiante._telefono = data["telefono"]
-        estudiante._tipoIdentificacion = data["tipoIdentificacion"]
-        estudiante._cedula = data["cedula"]
+        estudiante._estado = data["estado"]
+        estudiante._matricula = data["matricula"]
         return estudiante
     
-    def __str__(self) -> str:
-        return "Usuario: " + self._nombre + " " + self._fechaNacimiento + " Monto:" + str(self._cedula) + "\n"
-    
-    __repr__ = __str__
+    def __str__(self):
+        return f"{super().__str__()} Estado: {self._estado} Matricula: {self._matricula}"

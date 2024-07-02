@@ -1,16 +1,36 @@
 class InstrumentoEvaluacion:
-    def __init__(self, id: int, descripcion: str):
-        self.id = id
-        self.descripcion = descripcion
+    def __init__(self):
+        self.__id = 0
+        self.__descripcion = ""
 
-    def get_id(self):
-        return self.id
+    @property
+    def _id(self):
+        return self.__id
 
-    def set_id(self, value):
-        self.id = value
+    @_id.setter
+    def _id(self, value):
+        self.__id = value
 
-    def get_descripcion(self):
-        return self.descripcion
+    @property
+    def _descripcion(self):
+        return self.__descripcion
 
-    def set_descripcion(self, value):
-        self.descripcion = value
+    @_descripcion.setter
+    def _descripcion(self, value):
+        self.__descripcion = value
+
+    @property
+    def serializable(self):
+        return {
+            "id": self._id,
+            "descripcion": self._descripcion
+        }
+
+    def deserializar(self, data):
+        instrumentoEvaluacion = InstrumentoEvaluacion()
+        instrumentoEvaluacion._id = data["id"]
+        instrumentoEvaluacion._descripcion = data["descripcion"]
+        return instrumentoEvaluacion
+
+    def __str__(self):
+        return f"Id: {self._id} Descripcion: {self._descripcion}"

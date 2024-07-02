@@ -2,7 +2,7 @@ class Unidad:
     def __init__(self):
         self.__id = 0
         self.__nombre = ''
-        self.__duraciónSemanas = 0
+        self.__duracionSemanas = 0
 
     @property
     def _id(self):
@@ -21,27 +21,27 @@ class Unidad:
         self.__nombre = value
 
     @property
-    def _duraciónSemanas(self):
-        return self.__duraciónSemanas
+    def _duracionSemanas(self):
+        return self.__duracionSemanas
 
-    @_duraciónSemanas.setter
-    def _duraciónSemanas(self, value):
-        self.__duraciónSemanas = value
+    @_duracionSemanas.setter
+    def _duracionSemanas(self, value):
+        self.__duracionSemanas = value
 
     @property
     def serializable(self):
         return {
             "id": self._id,
             "nombre": self._nombre,
-            "duraciónSemanas": self._duraciónSemanas
+            "duracionSemanas": self._duracionSemanas
         }
     
     def deserializar(data):
         unidad = Unidad()
         unidad._id = data["id"]
         unidad._nombre = data["nombre"]
-        unidad._duraciónSemanas = data["duraciónSemanas"]
+        unidad._duracionSemanas = data["duracionSemanas"]
         return unidad
     
     def __str__(self):
-        return f"{self._id} {self._nombre} {self._duraciónSemanas}"
+        return f"{self._id} {self._nombre} {self._duracionSemanas}"

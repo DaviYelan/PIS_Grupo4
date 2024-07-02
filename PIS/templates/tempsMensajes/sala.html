@@ -608,11 +608,8 @@
 
 
 <body>
-    <div>
-        <a href="#" id="chat-button" class="chat-button">SALA DE CHAT</a>
-    </div>
     <div id="rectangulo" class="rectangulo">
-        <a href="link-a-tu-pagina-anterior" class="back-button">
+        <a href="/login/moduloEstudiantes" class="back-button">
             <img src="static/staticMensajes/imgs/boton-x.png" alt="Botón X">
             Volver
         </a>
@@ -645,7 +642,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const chatButton = document.getElementById('chat-button');
             const rectangulo = document.getElementById('rectangulo');
             const logo = document.getElementById('logo');
             const bienvenida = document.querySelector('.bienvenida');
@@ -657,8 +653,7 @@
             const messageContainer = document.querySelector('.message-container');
             const backButton = document.querySelector('.back-button');
 
-            chatButton.addEventListener('click', function (event) {
-                event.preventDefault();
+    {
                 rectangulo.classList.add('visible');
                 logo.classList.add('logo-show');
 
@@ -712,8 +707,8 @@
                         bienvenida.style.opacity = '1'; // Mostrar texto de bienvenida después de 2 segundos
                     }, 10000);
                 });
-            });
 
+            };
             const fileInput = document.getElementById('file-upload');
 
             toggleThemeButton.addEventListener('click', function () {

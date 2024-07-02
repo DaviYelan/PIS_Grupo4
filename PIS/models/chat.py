@@ -5,7 +5,7 @@ class Factura:
         self.__receptor = 0
         self.__mensaje = 0
         self.__fechaMensaje = 0
-        self.__estadoMensaje = bool = False
+        self.__estadoMensaje = True
 
     @property
     def _idChat(self):

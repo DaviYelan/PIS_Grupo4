@@ -4,7 +4,7 @@ from app import db
 from models.Modelcuenta import ModelCuenta
 from models.cuenta import Cuenta
 from controllers.docenteDaoControl import docenteDaoControl
-from controllers.estudianteDaoControl import estudianteDaoControl
+from controllers.estudianteDaoControl import EstudianteDaoControl
 from controllers.materiaDaoControl import MateriaDaoControl
 
 
@@ -92,20 +92,20 @@ def ver_opcionesEstud():
 
 @router.route('/listaEstudiante')
 def ver_estudiantes():
-    estudiante = estudianteDaoControl()
+    estudiante = EstudianteDaoControl()
     return render_template('tempsAdmin/estudiante/listaEstudiante.html', lista = estudiante.to_dic())
 
 
 @router.route('/registrar/editar/<pos>')
 def ver_editar(pos):
-    fd = estudianteDaoControl()
+    fd = EstudianteDaoControl()
     nene = fd._list().get(int(pos)-1)
     return render_template("tempsAdmin/estudiante/editarEstudi.html", data=nene)
 
 
 @router.route('/registrar/guardar', methods=['POST'])
 def guardar_estudiante():
-    est = estudianteDaoControl()
+    est = EstudianteDaoControl()
     est._estudiante._nombre = request.form['nombre']
     est._estudiante._apellido = request.form['apellido']
     est._estudiante._direccion = request.form['direccion']
@@ -120,14 +120,14 @@ def guardar_estudiante():
 
 @router.route('/registrar/eliminar')
 def eliminar_historiales():
-    estud = estudianteDaoControl()
+    estud = EstudianteDaoControl()
     estud.clear_all_retenciones()
     return redirect('/', code=302)
 
 
 @router.route('/registrar/modificar', methods=['POST'], )
 def modificar_estudiante():
-    et= estudianteDaoControl()
+    et= EstudianteDaoControl()
     data = request.form
     pos = data["id"]
     print("-----------------"+data["id"])
@@ -287,8 +287,13 @@ def notificacion():
 def cursos():
     return render_template("tempsEstudiante/estudiante/cursos.html")
 
+@router.route('/progreso')
+def progreso():
+    return render_template("tempsEstudiante/estudiante/progreso.html")
 
-
+@router.route('/proyeccion')
+def proyeccion():
+    return render_template("tempsEstudiante/estudiante/proyeccion.html")
 #------------MODULO DE MENSAJES-----------
 @router.route('/registro')
 def registro():

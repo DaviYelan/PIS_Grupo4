@@ -1,39 +1,70 @@
-from models.componenteRubrica import ComponenteRubrica
+from models.enumComponenteRubrica import EnumComponenteRubrica
+from models.nota import Nota
 
 class Rubrica:
-    def __init__(self, id: int, componente: ComponenteRubrica, idInstrumentoEvaluacion: int, idNota: int, ponderacion: str):
-        self.id = id
-        self.componente = componente
-        self.idInstrumentoEvaluacion = idInstrumentoEvaluacion
-        self.idNota = idNota
-        self.ponderacion = ponderacion
+    def __init__(self):
+        self.__id = 0
+        self.__componente = EnumComponenteRubrica
+        self.__idInstrumentoEvaluacion = 0
+        self.__idNota = Nota()
+        self.__ponderacion = 0.0
 
-    def get_id(self):
-        return self.id
 
-    def set_id(self, value):
-        self.id = value
+    @property
+    def _id(self):
+        return self.__id
 
-    def get_componente(self):
-        return self.componente
+    @_id.setter
+    def _id(self, value):
+        self.__id = value
 
-    def set_componente(self, value):
-        self.componente = value
+    @property
+    def _componente(self):
+        return self.__componente
 
-    def get_idInstrumentoEvaluacion(self):
-        return self.idInstrumentoEvaluacion
+    @_componente.setter
+    def _componente(self, value):
+        self.__componente = value
 
-    def set_idInstrumentoEvaluacion(self, value):
-        self.idInstrumentoEvaluacion = value
+    @property
+    def _idInstrumentoEvaluacion(self):
+        return self.__idInstrumentoEvaluacion
 
-    def get_idNota(self):
-        return self.idNota
+    @_idInstrumentoEvaluacion.setter
+    def _idInstrumentoEvaluacion(self, value):
+        self.__idInstrumentoEvaluacion = value
 
-    def set_idNota(self, value):
-        self.idNota = value
+    @property
+    def _idNota(self):
+        return self.__idNota
 
-    def get_ponderacion(self):
-        return self.ponderacion
+    @_idNota.setter
+    def _idNota(self, value):
+        self.__idNota = value
 
-    def set_ponderacion(self, value):
-        self.ponderacion = value
+    @property
+    def _ponderacion(self):
+        return self.__ponderacion
+
+    @_ponderacion.setter
+    def _ponderacion(self, value):
+        self.__ponderacion = value
+
+    @property
+    def serializable(self):
+        return {
+            "id": self._id,
+            "componente": self._componente,
+            "idInstrumentoEvaluacion": self._idInstrumentoEvaluacion,
+            "idNota": self._idNota.serializable,
+            "ponderacion": self._ponderacion
+        }
+    
+    def deserializar(self, data):
+        rubrica = Rubrica()
+        rubrica._id = data["id"]
+        rubrica._componente = data["componente"]
+        rubrica._idInstrumentoEvaluacion = data["idInstrumentoEvaluacion"]
+        rubrica._idNota = data["idNota"]
+        rubrica._ponderacion = data["ponderacion"]
+        return rubrica

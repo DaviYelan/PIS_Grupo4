@@ -2,24 +2,135 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='/staticEstudiante/css/cursos.css') }}">
 <link rel="shortcut icon" href="{{ url_for('static', filename='/staticEstudiante/img/SOL.png') }}" />
-<title>Cursos Académicos</title>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Course Grid</title>
 </head>
-
 <body>
-    <section class="home">
-        <div class="main-content">
-            <div class="content">
-                <div class="text-column">
-                    <h1>Cursos Académicos</h1>
-                    <div class="courses">
-                        <!-- Courses will be inserted here dynamically -->
-                    </div>
-                </div>
+    <div class="container">
+        <div class="course-card" onclick="location.href='/progreso'">
+            <img src="{{ url_for('static', filename='/staticEstudiante/img/cursos.jpg') }}" alt="Estructura de Datos">
+            <div class="course-info">
+                <span class="faculty">Facultad de la Energía, las Industrias y los Recursos Naturales no Renovables</span>
+                <h2>A - Estructura de Datos (MAR24-AGOS24)</h2>
+            </div>
+            <div class="progress-container">
+                <table>
+                    <tr>
+                        <td>
+                            <span class="course-name">Estructura de Datos | 122975</span>
+                        </td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 75%;"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="status">AHORA</span>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
-    </section>
-    <script src="{{ url_for('static', filename='/staticEstudiante/js/cursos.js') }}"></script>
+        <div class="course-card" onclick="location.href='/progreso'">
+            <img src="{{ url_for('static', filename='/staticEstudiante/img/cursos.jpg') }}" alt="Arquitectura de Ordenadores">
+            <div class="course-info">
+                <span class="faculty">Facultad de la Energía, las Industrias y los Recursos Naturales no Renovables</span>
+                <h2>A - Arquitectura de Ordenadores (MAR24-AGOS24)</h2>
+            </div>
+            <div class="progress-container">
+                <table>
+                    <tr>
+                        <td>
+                            <span class="course-name">Arquitectura de Ordenadores | 122973</span>
+                        </td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 50%;"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="status">AHORA</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="course-card" onclick="location.href='/progreso'">
+            <img src="{{ url_for('static', filename='/staticEstudiante/img/cursos.jpg') }}" alt="Base de Datos">
+            <div class="course-info">
+                <span class="faculty">Facultad de la Energía, las Industrias y los Recursos Naturales no Renovables</span>
+                <h2>A - Base de Datos (MAR24-AGOS24)</h2>
+            </div>
+            <div class="progress-container">
+                <table>
+                    <tr>
+                        <td>
+                            <span class="course-name">Base de Datos | 122974</span>
+                        </td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 65%;"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="status">AHORA</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="course-card" onclick="location.href='/progreso'">
+            <img src="{{ url_for('static', filename='/staticEstudiante/img/cursos.jpg') }}" alt="Requisitos de Software">
+            <div class="course-info">
+                <span class="faculty">Facultad de la Energía, las Industrias y los Recursos Naturales no Renovables</span>
+                <h2>A - Requisitos de Software (MAR24-AGOS24)</h2>
+            </div>
+            <div class="progress-container">
+                <table>
+                    <tr>
+                        <td>
+                            <span class="course-name">Requisitos de Software | 122972</span>
+                        </td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 80%;"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="status">AHORA</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="course-card" onclick="location.href='/progreso'">
+            <img src="{{ url_for('static', filename='/staticEstudiante/img/cursos.jpg') }}" alt="Inglés 1">
+            <div class="course-info">
+                <span class="faculty">Facultad de la Educación, del Arte y la Comunicación</span>
+                <h2>O - INGLES 1 (MAR24-AGOS24-ID)</h2>
+            </div>
+            <div class="progress-container">
+                <table>
+                    <tr>
+                        <td>
+                            <span class="course-name">INGLES 1 | 120331</span>
+                        </td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 45%;"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="status">AHORA</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
-
 </html>
+
 {% endblock %}
