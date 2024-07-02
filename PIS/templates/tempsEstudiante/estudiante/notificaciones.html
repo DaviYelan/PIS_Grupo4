@@ -1,0 +1,25 @@
+{% extends "tempsEstudiante/index.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='/staticEstudiante/css/notificaciones.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='/staticEstudiante/img/SOL.png') }}" />
+<title>Notificaciones</title>
+</head>
+
+<body>
+    <section class="home">
+        <div class="main-content">
+            <div class="content">
+                <div class="text-column">
+                    <h1>Notificaciones</h1>
+                    <div class="notifications">
+                        <!-- Notifications will be inserted here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{{ url_for('static', filename='/staticEstudiante/js/notificaciones.js') }}"></script>
+</body>
+
+</html>
+{% endblock %}

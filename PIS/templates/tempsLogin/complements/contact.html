@@ -1,0 +1,88 @@
+{% extends "tempsLogin/index.html" %}
+{% block content %}
+
+<title>Contact Us</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f4f4f4;
+        background: url(https://t4.ftcdn.net/jpg/05/04/78/25/360_F_504782581_LHwsDbXlrFiiadWC4i15yV2lhbJnB8g0.jpg) no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .contact-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .contact-container h2 {
+        margin-bottom: 20px;
+        font-size: 2.5em;
+        color: #333;
+    }
+
+    .contact-info {
+        font-size: 1.2em;
+        color: #666;
+        margin-bottom: 10px;
+    }
+
+    .contact-info p {
+        margin: 10px 0;
+    }
+
+    .contact-info i {
+        color: #007bff;
+        margin-right: 10px;
+    }
+
+    .social-icons {
+        margin-top: 20px;
+    }
+
+    .social-icons a {
+        color: #333;
+        margin: 0 10px;
+        font-size: 1.5em;
+        transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+        color: #FFEC96FF;
+    }
+</style>
+
+<section>
+    <div class="contact-container">
+        <h2 class="text-center">Contáctanos</h2>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> darwin.a.sarango@unl.edu.ec</p>
+            <p><i class="fas fa-envelope"></i> miguel.a.luna@unl.edu.ec</p>
+            <p><i class="fas fa-envelope"></i> example2@unl.edu.ec</p>
+            <p><i class="fas fa-envelope"></i> example3@unl.edu.ec</p>
+            <p><i class="fas fa-envelope"></i> example4@unl.edu.ec</p>
+        </div>
+        <!-- Opcional -->
+
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
+{% endblock %}
