@@ -27,7 +27,6 @@ def create_app():
         def load_user(id):
             from models.Modelcuenta import ModelCuenta
             return ModelCuenta.get_by_id(db, id)
-
     return app
 
 if __name__ == '__main__':

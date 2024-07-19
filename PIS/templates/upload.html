@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subir Archivo de Notas</title>
+</head>
+<body>
+    <h1>Subir Archivo de Notas</h1>
+    <form action="{{ url_for('router.upload_file') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Subir">
+    </form>
+</body>
+</html>

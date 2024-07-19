@@ -1,4 +1,11 @@
-from flask import Blueprint, render_template, redirect, request, flash, abort
+import base64
+import io
+import json
+import os
+import pandas as pd
+import matplotlib.pyplot as plt
+from flask import Blueprint, jsonify, render_template, redirect, request, flash, abort, url_for
+from controllers.personaDaoControl import PersonaDaoControl
 from flask_login import logout_user, login_required, login_user, LoginManager
 from app import db
 from models.Modelcuenta import ModelCuenta
@@ -20,24 +27,7 @@ def load_user(id):
 #-------------LOGIN--------------
 @router.route('/')
 def home():
-    return redirect("/home")
-
-@router.route('/home')
-def home_():
-    return render_template("tempsLogin/home/home.html")
-
-@router.route('/about')
-def about():
-    return render_template("tempsLogin/complements/about.html")
-
-@router.route('/contact')
-def contact():
-    return render_template("tempsLogin/complements/contact.html")
-
-@router.route('/estudiante')
-@login_required
-def example():
-    return render_template("tempsLogin/exampleLogin.html")
+    return redirect("/login")
 
 @router.route('/login/example')
 @login_required
@@ -105,15 +95,15 @@ def ver_editar(pos):
 
 @router.route('/registrar/guardar', methods=['POST'])
 def guardar_estudiante():
-    est = EstudianteDaoControl()
-    est._estudiante._nombre = request.form['nombre']
-    est._estudiante._apellido = request.form['apellido']
-    est._estudiante._direccion = request.form['direccion']
-    est._estudiante._fechaNacimiento = request.form['fechaNacimiento']
-    est._estudiante._genero = request.form['genero']
-    est._estudiante._telefono = request.form['telefono']
-    est._estudiante._tipoIdentificacion = request.form['tipoIdentificacion']
-    est._estudiante._cedula = request.form['cedula']
+    est = PersonaDaoControl()
+    est._persona._nombre = request.form['nombre']
+    est._persona._apellido = request.form['apellido']
+    est._persona._direccion = request.form['direccion']
+    est._persona._fechaNacimiento = request.form['fechaNacimiento']
+    est._persona._genero = request.form['genero']
+    est._persona._telefono = request.form['telefono']
+    est._persona._tipoIdentificacion = request.form['tipoIdentificacion']
+    est._persona._cedula = request.form['cedula']
     est.save
     return redirect('/listaEstudiante', code = 302)
 
@@ -303,3 +293,55 @@ def registro():
 @login_required
 def sala():
     return render_template('tempsMensajes/sala.html')
+#---------------------------------PROYECCION--------------------------------
+@router.route('/ejemplo')
+def ejemplo():
+    return render_template('result.html')
+
+# Carga el archivo Excel y lo convierte en un DataFrame de pandas
+@router.route('/upload', methods=['POST'])
+def upload_file():
+    file = request.files['file']
+    df = pd.read_excel(file)
+    students = []
+    for index, row in df.iterrows():
+        student = {
+            'name': row['Nombre'],
+            'grades': {
+                'unidad1': row['Unidad 1'],
+                'unidad2': row['Unidad 2'],
+                'unidad3': row['Unidad 3']
+            }
+        }
+        students.append(student)
+    return jsonify(students)
+
+# Genera la proyección para cada estudiante
+@router.route('/projection', methods=['POST'])
+def generate_projection():
+    student_data = request.get_json()
+    projection = {}
+    for student in student_data:
+        name = student['name']
+        grades = student['grades']
+        total_grade = (grades['unidad1'] + grades['unidad2'] + grades['unidad3']) / 3
+        if total_grade < 7:
+            projection[name] = {
+                'unidad2': max(0, 7 - total_grade + grades['unidad2']),
+                'unidad3': max(0, 7 - total_grade + grades['unidad3'])
+            }
+        else:
+            projection[name] = {
+                'unidad2': 0,
+                'unidad3': 0
+            }
+    return jsonify(projection)
+
+# Guarda los datos en un archivo JSON
+@router.route('/save', methods=['POST'])
+def save_data():
+    data = request.get_json()
+    with open('data.json', 'w') as f:
+        json.dump(data, f)
+    return 'Datos guardados correctamente'
+

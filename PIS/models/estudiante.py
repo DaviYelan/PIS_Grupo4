@@ -1,12 +1,26 @@
-# estudiante.py
 from models.enumEstadoEstudiante import EnumEstadoEstudiante
-from models.persona import Persona
 
-class Estudiante(Persona):
+class Estudiante:
     def __init__(self):
-        super().__init__()
-        self.__estado = EnumEstadoEstudiante
-        self.__matricula = ""
+        self.__id = 0  
+        self.__tipo = ""
+        self.__estado = EnumEstadoEstudiante.PRIMERA
+
+    @property
+    def _id(self):
+        return self.__id
+
+    @_id.setter
+    def _id(self, value):
+        self.__id = value
+
+    @property
+    def _tipo(self):
+        return self.__tipo
+
+    @_tipo.setter
+    def _tipo(self, value):
+        self.__tipo = value
 
     @property
     def _estado(self):
@@ -17,25 +31,21 @@ class Estudiante(Persona):
         self.__estado = value
 
     @property
-    def _matricula(self):
-        return self.__matricula
-
-    @_matricula.setter
-    def _matricula(self, value):
-        self.__matricula = value
-
-    @property
     def serializable(self):
         return {
-            "estado": self._estado,
-            "matricula": self._matricula
+            "id": self.__id,
+            "estado": self.__estado,
+            "tipo": self.__tipo
+            
         }
-
-    def deserializar(self, data):
-        estudiante = Estudiante()
-        estudiante._estado = data["estado"]
-        estudiante._matricula = data["matricula"]
-        return estudiante
     
-    def __str__(self):
-        return f"{super().__str__()} Estado: {self._estado} Matricula: {self._matricula}"
+    @staticmethod
+    def deserializar(data):
+        edc = Estudiante()
+        edc._id = data["id"]
+        edc._estado = data["estado"] 
+        edc._tipo = data["tipo"]
+        return edc
+
+
+      

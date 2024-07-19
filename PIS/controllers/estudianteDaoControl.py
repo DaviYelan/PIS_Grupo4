@@ -1,5 +1,7 @@
+from typing import Type
 from controllers.dao.daoAdapter import DaoAdapter
 from models.estudiante import Estudiante
+
 class EstudianteDaoControl(DaoAdapter):
     def __init__(self):
         super().__init__(Estudiante)
@@ -7,25 +9,20 @@ class EstudianteDaoControl(DaoAdapter):
 
     @property
     def _estudiante(self):
-        if self.__estudiante is None:
-            self.__estudiante = (Estudiante)
+        if self.__estudiante == None:
+            self.__estudiante = Estudiante()
         return self.__estudiante
 
     @_estudiante.setter
     def _estudiante(self, value):
         self.__estudiante = value
 
-    @property
+
     def _lista(self):
-        return self._list()
-    
+        return self._lista()
+
     @property
     def save(self):
-        self._estudiante._id = self._lista._lenght + 1
         self._save(self._estudiante)
+
     
-    def merge(self, pos):
-        self._merge(self._estudiante, pos)
-    
-    def delete(self, pos):
-        self._delete(self._estudiante, pos)

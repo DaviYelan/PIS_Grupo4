@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudiantes y Notas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="#">Estudiantes y Notas</a>
+    </nav>
+    <div class="container">
+        <h1>Subir archivo Excel</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <button type="submit">Subir</button>
+        </form>
+        <h1>Estudiantes</h1>
+        <ul id="students">
+        </ul>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $.ajax({
+                    type: 'POST',
+                    url: '/upload',
+                    data: new FormData($('#upload-form')[0]),
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        $.each(data, function(index, student) {
+                            $('#students').append('<li>' + student.name + ' <button class="btn btn-primary" onclick="generateProjection(' + JSON.stringify(student) + ')">Proyección</button></li>');
+                        });
+                    }
+                });
+            });
+            function generateProjection(student) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/projection',
+                    data: JSON.stringify(student),
+                    contentType: 'application/json',
+                    success: function(data) {
+                        $('#projection').append('<p>' + student.name + ': Necesita ' + data[student.name].unidad2 + ' en la segunda unidad y ' + data[student.name].unidad3 + ' en la tercera unidad para aprobar</p>');
+                    }
+                });
+            }
+        </script>
+    </div>
+</body>
+</html>
