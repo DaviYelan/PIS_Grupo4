@@ -23,7 +23,6 @@ class FacultadDaoControl(DaoAdapter):
     
     @property
     def save(self):
-        self._facultad._id = self._lista._lenght + 1
         self._save(self._facultad)
     
     def merge(self, pos):

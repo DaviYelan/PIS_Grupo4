@@ -23,7 +23,6 @@ class MallaDaoControl(DaoAdapter):
     
     @property
     def save(self):
-        self._malla._id = self._lista._lenght + 1
         self._save(self._malla)
     
     def merge(self, pos):

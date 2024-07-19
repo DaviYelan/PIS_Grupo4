@@ -21,7 +21,6 @@ class EstudianteDaoControl(DaoAdapter):
     
     @property
     def save(self):
-        self._estudiante._id = self._lista._lenght + 1
         self._save(self._estudiante)
     
     def merge(self, pos):
