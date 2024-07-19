@@ -23,7 +23,6 @@ class CursaDaoControl(DaoAdapter):
     
     @property
     def save(self):
-        self._cursa._id = self._lista._lenght + 1
         self._save(self._cursa)
     
     def merge(self, pos):

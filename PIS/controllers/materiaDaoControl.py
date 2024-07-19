@@ -25,7 +25,6 @@ class MateriaDaoControl(DaoAdapter):
 
     @property
     def save(self):
-        self._materia._id = self._lista._lenght + 1
         self._save(self._materia)
         
     def merge(self, pos):
