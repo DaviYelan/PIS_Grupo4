@@ -20,29 +20,7 @@ def load_user(id):
 #-------------LOGIN--------------
 @router.route('/')
 def home():
-    return redirect("/home")
-
-@router.route('/home')
-def home_():
-    return render_template("tempsLogin/home/home.html")
-
-@router.route('/about')
-def about():
-    return render_template("tempsLogin/complements/about.html")
-
-@router.route('/contact')
-def contact():
-    return render_template("tempsLogin/complements/contact.html")
-
-@router.route('/estudiante')
-@login_required
-def example():
-    return render_template("tempsLogin/exampleLogin.html")
-
-@router.route('/login/example')
-@login_required
-def admin():
-    return render_template("tempsLogin/exampleLogin.html")
+    return redirect("/login")
 
 @router.route('/login', methods=['POST', 'GET'])
 def login():
