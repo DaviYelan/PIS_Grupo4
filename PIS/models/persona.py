@@ -8,7 +8,6 @@ class Persona:
         self.__genero = ""
         self.__telefono = ""
         self.__tipoIdentificacion = ""
-        self.__cedula = ""
 
     @property
     def _id(self):
@@ -75,15 +74,6 @@ class Persona:
         self.__tipoIdentificacion = value
 
     @property
-    def _cedula(self):
-        return self.__cedula
-
-    @_cedula.setter
-    def _cedula(self, value):
-        self.__cedula = value
-
-
-    @property
     def serializable(self):
         return {
             "id": self._id,
@@ -94,7 +84,6 @@ class Persona:
             "genero": self._genero,
             "telefono": self._telefono,
             "tipoIdentificacion": self._tipoIdentificacion,
-            "cedula": self._cedula
         }
 
     def deserializar(self, data):
@@ -107,8 +96,7 @@ class Persona:
         persona._genero = data["genero"]
         persona._telefono = data["telefono"]
         persona._tipoIdentificacion = data["tipoIdentificacion"]
-        persona._cedula = data["cedula"]
         return persona
     
     def __str__(self):
-        return f"ID: {self._id} Nombre: {self._nombre} Apellido: {self._apellido} Direccion: {self._direccion} Fecha de Nacimiento: {self._fechaNacimiento} Genero: {self._genero} Telefono: {self._telefono} Tipo de Identificacion: {self._tipoIdentificacion} Cedula: {self._cedula}"
+        return f"ID: {self._id} Nombre: {self._nombre} Apellido: {self._apellido} Direccion: {self._direccion} Fecha de Nacimiento: {self._fechaNacimiento} Genero: {self._genero} Telefono: {self._telefono} Tipo de Identificacion: {self._tipoIdentificacion}"
