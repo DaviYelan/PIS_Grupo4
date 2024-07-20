@@ -9,7 +9,7 @@ from controllers.unidadDaoControl import UnidadDaoControl
 from controllers.cursaDaoControl import CursaDaoControl
 from controllers.periodoAcademicoDaoControl import PeriodoAcademicoDaoControl
 from controllers.personaDaoControl import PersonaDaoControl
-from controllers.alumnoDaoControl import AlumnoDaoControl
+from controllers.estudianteDaoControl import EstudianteDaoControl
 from controllers.docenteDaoControl import DocenteDaoControl
 
 fdc = FacultadDaoControl()
@@ -20,7 +20,7 @@ ucd = UnidadDaoControl()
 cdc = CursaDaoControl()
 padc = PeriodoAcademicoDaoControl()
 pdc = PersonaDaoControl()
-alc = AlumnoDaoControl()
+edc = EstudianteDaoControl()
 dc = DocenteDaoControl()
 try:
 #    fdc._facultad._nombre = "Ingenieria"
@@ -65,21 +65,27 @@ try:
     #  pdc._persona._genero = "Masculino"
     #  pdc._persona._tipoIdentificacion = "Cedula"
     #  pdc.save
-     dc._docente._nombre = "Juan"
-     dc._docente._apellido = "Perez"
-     dc._docente._fecha = "2021-01-01"
-     dc._docente._telefono = "0987654321"
-     dc._docente._correo = "juan.perez@unl.edu.ec"
-     dc._docente._genero = "Masculino"
-     dc._docente._tipoIdentificacion = "Cedula"
-     dc._docente._tituloCuartoNivel = "Ingeniero en Sistemas"
-     dc._docente._especialidad = "Ingeniero en Sistemas"
-     dc._docente._cubiculo = "A-1"
-     dc.save
-    # alc._alumno.__tipo = "Estudiante"
-    # alc._alumno._orden = "Segunda Matricula"
-    # alc._alumno._ciclo = "Primer ciclo"
-    # alc.save
+    #  dc._docente._nombre = "Juan"
+    #  dc._docente._apellido = "Perez"
+    #  dc._docente._fecha = "2021-01-01"
+    #  dc._docente._telefono = "0987654321"
+    #  dc._docente._correo = "juan.perez@unl.edu.ec"
+    #  dc._docente._genero = "Masculino"
+    #  dc._docente._tipoIdentificacion = "Cedula"
+    #  dc._docente._tituloCuartoNivel = "Ingeniero en Sistemas"
+    #  dc._docente._especialidad = "Ingeniero en Sistemas"
+    #  dc._docente._cubiculo = "A-1"
+    #  dc.save
+    edc._estudiante._nombre = "Darwin"
+    edc._estudiante._apellido = "Perez"
+    edc._estudiante._fecha = "2021-01-02"
+    edc._estudiante._genero = "Masculino"
+    edc._estudiante._telefono = "0987654321"
+    edc._estudiante._correo = "darwin.perez@unl.edu.ec"
+    edc._estudiante._orden = "SEGUNDA MATRICULA"
+    edc._estudiante._ciclo = 2
+    edc.save
+    
 except Exception as error:
     print("Errores")
     print(error)
