@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 [{"id": 1, "apellido": "Perez", "nombre": "Juan", "telefono": "0987654321", "correo": "juan.perez@unl.edu.ec", "fecha": "2000-01-01", "genero": "Masculino", "tipo": "Cedula"},{"id": 2, "apellido": "Perez", "nombre": "Juan", "telefono": "0987654321", "correo": "juan.perez@unl.edu.ec", "fecha": "2000-01-01", "genero": "Masculino", "tipo": "Cedula"}]
+=======
+[{"id": 1, "apellido": "Perez", "nombre": "Juan", "dni": "", "telefono": "0987654321", "correo": "juan.perez@unl.edu.ec", "fecha": "2021-01-01", "genero": "Masculino", "tipo": "Cedula"},{"id": 2, "apellido": "Perez", "nombre": "Juan", "dni": "", "telefono": "0987654321", "correo": "juan.perez@unl.edu.ec", "fecha": "2021-01-01", "genero": "Masculino", "tipo": "Cedula"},{"id": 3, "apellido": "Perez", "nombre": "Juan", "dni": "", "telefono": "0987654321", "correo": "juan.perez@unl.edu.ec", "fecha": "2021-01-01", "genero": "Masculino", "tipo": "Cedula"},{"id": 4, "apellido": "Perez", "nombre": "Juan", "dni": "", "telefono": "0987654321", "correo": "juan.perez@unl.edu.ec", "fecha": "2021-01-01", "genero": "Masculino", "tipo": "Cedula"}]
+>>>>>>> 82f3bbcd9687a60ecc2ce9f0160c3d49805a78f1

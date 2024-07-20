@@ -1,7 +1,8 @@
 import sys
+
+
 sys.path.append('../')
 from controllers import personaDaoControl
-from controllers.estudianteDaoControl import EstudianteDaoControl
 from controllers.facultadDaoControl import FacultadDaoControl
 from controllers.universidadDaoControl import UniversidadDaoControl
 from controllers.materiaDaoControl import MateriaDaoControl
@@ -10,6 +11,7 @@ from controllers.unidadDaoControl import UnidadDaoControl
 from controllers.cursaDaoControl import CursaDaoControl
 from controllers.periodoAcademicoDaoControl import PeriodoAcademicoDaoControl
 from controllers.personaDaoControl import PersonaDaoControl
+from controllers.alumnoDaoControl import AlumnoDaoControl
 
 fdc = FacultadDaoControl()
 udc = UniversidadDaoControl()
@@ -18,8 +20,8 @@ mcd = MallaDaoControl()
 ucd = UnidadDaoControl()
 cdc = CursaDaoControl()
 padc = PeriodoAcademicoDaoControl()
-edc = EstudianteDaoControl()
 pdc = PersonaDaoControl()
+alc = AlumnoDaoControl()
 try:
 #    fdc._facultad._nombre = "Ingenieria"
 #    fdc.save
@@ -57,13 +59,21 @@ try:
     #  cdc.save
      pdc._persona._nombre = "Juan"
      pdc._persona._apellido = "Perez"
-     pdc._persona._direccion = "Av. Túpac Amaru 210"
      pdc._persona._telefono = "0987654321"
      pdc._persona._correo = "juan.perez@unl.edu.ec"
+<<<<<<< HEAD
      pdc._persona._fecha = "2000-01-01"
+=======
+     pdc._persona._fecha = "2021-01-01"
+>>>>>>> 82f3bbcd9687a60ecc2ce9f0160c3d49805a78f1
      pdc._persona._genero = "Masculino"
      pdc._persona._tipoIdentificacion = "Cedula"
      pdc.save
+     
+    # alc._alumno.__tipo = "Estudiante"
+    # alc._alumno._orden = "Segunda Matricula"
+    # alc._alumno._ciclo = "Primer ciclo"
+    # alc.save
 except Exception as error:
     print("Errores")
     print(error)

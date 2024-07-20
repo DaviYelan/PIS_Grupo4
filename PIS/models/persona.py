@@ -2,8 +2,13 @@ from models.enumTipoIdentificacion import EnumTipoIdentificacion
 class Persona:
     def __init__(self):
         self.__id = 0  
+<<<<<<< HEAD
         self.__nombres = ""
         self.__apellidos = ""
+=======
+        self.__nombre = ""
+        self.__apellido = ""
+>>>>>>> 82f3bbcd9687a60ecc2ce9f0160c3d49805a78f1
         self.__dni = ""
         self.__telefono = ""
         self.__correo = ""
@@ -38,6 +43,7 @@ class Persona:
     @property
     def _dni(self):
         return self.__dni
+<<<<<<< HEAD
 
     @_dni.setter
     def _dni(self, value):
@@ -84,6 +90,46 @@ class Persona:
         self.__genero = value
 
     @property
+=======
+
+    @_dni.setter
+    def _dni(self, value):
+        self.__dni = value
+
+    @property
+    def _telefono(self):
+        return self.__telefono
+
+    @_telefono.setter
+    def _telefono(self, value):
+        self.__telefono = value
+    
+    @property
+    def _correo(self):
+        return self.__correo
+
+    @_correo.setter
+    def _correo(self, value):
+        self.__correo = value
+
+    @property
+    def _fecha(self):
+        return self.__fecha
+
+    @_fecha.setter
+    def _fecha(self, value):
+        self.__fecha = value
+
+    @property
+    def _genero(self):
+        return self.__genero
+
+    @_genero.setter
+    def _genero(self, value):
+        self.__genero = value
+
+    @property
+>>>>>>> 82f3bbcd9687a60ecc2ce9f0160c3d49805a78f1
     def _tipoIdentificacion(self):
         return self.__tipoIdentificacion
 
@@ -98,6 +144,10 @@ class Persona:
             "id": self.__id,
             "apellido": self.__apellido,
             "nombre": self.__nombre,
+<<<<<<< HEAD
+=======
+            "dni": self.__dni,
+>>>>>>> 82f3bbcd9687a60ecc2ce9f0160c3d49805a78f1
             "telefono": self.__telefono,
             "correo": self.__correo,
             "fecha": self.__fecha,
@@ -110,6 +160,7 @@ class Persona:
         persona = Persona()
         persona._id = data["id"]
         persona._apellido = data["apellido"]
+<<<<<<< HEAD
         persona._nombre = data["nombre"]
         persona._telefono = data["telefono"]
         persona.__correo = data["correo"]
@@ -121,5 +172,19 @@ class Persona:
 
     def __str__(self) -> str:
         return "{" + str(self.__id) + ": " + self.__apellidos + " " + self.__nombres + "}"
+=======
+        persona._dni = data["dni"]
+        persona._telefono = data["telefono"]
+        persona._correo = data["correo"]
+        persona._fecha = data["fecha"]
+        persona._genero = data["genero"]
+        persona._tipoIdentificacion = data["tipo"] 
+        return persona
+
+
+
+    def __str__(self) -> str:
+        return "{" + str(self.__id) + ": " + self.__apellido + " " + self.__nombre + "}"
+>>>>>>> 82f3bbcd9687a60ecc2ce9f0160c3d49805a78f1
  
     
