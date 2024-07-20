@@ -1,0 +1,65 @@
+{% extends "tempsAdmin/index.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='/staticAdmin/css/gestion.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  </head>
+  <body>
+    <div class="text-center">
+      <div class="booking-form-body">
+        <form id="form" class="custom-form booking-form" action="/registrarDocentes/guardar" method="post" role="form">
+          <h1 class="display-4">Registro Docente</h1>
+          <div class="row">
+            <div class="col-lg-6 col-12 form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ingresa tus Nombres" required>
+            </div>
+            <div class="col-lg-6 col-12 form-group">
+              <label for="apellido">Apellido</label>
+              <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Ingresa tus Apellidos" required>
+            </div>
+            <div class="col-lg-6 col-12 form-group">
+              <label for="telefono">Telefono</label>
+              <input type="text" id="telefono" name="telefono" class="form-control" placeholder="Ingresa tu número de teléfono" required>
+            </div>
+            <div class="col-lg-6 col-12 form-group">
+              <label for="correo">Correo</label>
+              <input type="text" id="correo" name="correo" class="form-control" placeholder="Ingresa tu correo" required>
+            </div>
+            <div class="col-lg-6 col-12 form-group" id="date" data-target-input="nearest">
+              <label for="fecha">Fecha</label>
+              <input type="date" id="fecha" name="fecha" class="form-control" required>
+            </div>
+            <div class="col-lg-6 col-12 form-group">
+              <label for="genero">Género</label>
+              <select id="genero" name="genero" class="form-control" required>
+                <option selected>Seleccione el Género</option>
+                <option value="MASCULINO">MASCULINO</option>
+                <option value="FEMENINO">FEMENINO</option>
+                <option value="OTROS">OTROS</option>
+              </select>
+            </div>
+            <div class="col-lg-6 col-12 form-group">
+              <label for="tipoIdentificacion">Tipo de Identificación</label>
+              <select id="tipoIdentificacion" name="tipoIdentificacion" class="form-control" required>
+                <option selected>Seleccione el Tipo de Identificación</option>
+                <option value="CEDULA">CÉDULA</option>
+                <option value="PASAPORTE">PASAPORTE</option>
+                <option value="OTROS">OTROS</option>
+              </select>
+            </div>
+            <div class="col-lg-4 col-md-10 col-8 mx-auto mt-2 submit-btn">
+              <button id="boton" type="submit" class="form-control btn btn-success">Guardar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="{{url_for('static', filename='/staticAdmin/js/script.js')}}"></script>
+  </body>
+</html>
+{% endblock %}

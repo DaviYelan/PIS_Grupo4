@@ -84,14 +84,18 @@ def ver_editar(pos):
 
 @router.route('/registrar/guardar', methods=['POST'])
 def guardar_estudiante():
-    est = PersonaDaoControl()
-    est._persona._nombre = request.form['nombre']
-    est._persona._apellido = request.form['apellido']
-    est._persona._fechaNacimiento = request.form['fechaNacimiento']
-    est._persona._telefono = request.form['telefono']
-    est._persona._genero = request.form['genero']
-    est._persona._correo = request.form['correo']
-    est._persona._tipoIdentificacion = request.form['tipoIdentificacion']
+    est = DocenteDaoControl()
+    est._docente._id = request.form['id']
+    est._docente._nombre = request.form['nombre']
+    est._docente._apellido = request.form['apellido']
+    est._docente._fecha = request.form['fecha']
+    est._docente._genero = request.form['genero']
+    est._docente._telefono = request.form['telefono']
+    est._docente._correo = request.form['correo']
+    est._docente._tipoIdentificacion = request.form['tipoIdentificacion']
+    est._docente._tituloCuartoNivel = request.form['tituloCuartoNivel']
+    est._docente._especialidad = request.form['especialidad']
+    est._docente._cubiculo = request.form['cubiculo']
     est.save
     return redirect('/listaEstudiante', code = 302)
 
@@ -105,7 +109,7 @@ def modificar_estudiante():
     et._persona._nombre = data['nombre']
     et._persona._apellido = data['apellido']
     et._persona._direccion = data['direccion']
-    et._persona._fechaNacimiento = data['fechaNacimiento']
+    et._persona._fecha = data['fecha']
     et._persona._genero = data['genero']
     et._persona._telefono = data['telefono']
     et._persona._tipoIdentificacion = data['tipoIdentificacion']
@@ -113,37 +117,47 @@ def modificar_estudiante():
     return redirect("/listaEstudiante", code=302)
 
 ########         Seccion Docente      ###################
+#acciones de docente
+@router.route('/accionDocente')
+def ver_opcionesDocentes():
+    return render_template('tempsAdmin/docente/accion.html')
 
 @router.route('/registrarDocentes')
 def ver_guardar():
-    return render_template('tempsAdmin/docente/registrarDocente.html')
+    return render_template('tempsAdmin/docente/registrar.html')
 
-@router.route('/accionDocente')
-def ver_opcionesDocen():
-    return render_template('tempsAdmin/docente/accionDocen.html')
-
-@router.route('/listaDocente')
+#LISTA DE DOCENTES
+@router.route('/listaDocentes')
 def ver_docentes():
     docente = DocenteDaoControl()
-    return render_template('tempsAdmin/docente/listaDocen.html', lista = docente.to_dic())
+    return render_template('tempsAdmin/docente/lista.html', lista=docente.to_dic())
 
+#MOSTRAR LISTA DE DOCENTES
+@router.route('/docentes/ver')
+def ver():
+    return render_template('tempsAdmin/docente/registrar.html')
+#EDITAR DOCENTES
 @router.route('/registrarDocentes/editar/<pos>')
 def ver_edita(pos):
     dc = DocenteDaoControl()
     nene = dc._list().get(int(pos)-1)
     return render_template("tempsAdmin/docente/editarDocen.html", data=nene)
 
-
+#guardar docentes
 @router.route('/registrarDocentes/guardar', methods=['POST'])
 def guardar_docentes():
-    est = PersonaDaoControl()
-    est._persona._nombre = request.form['nombre']
-    est._persona._apellido = request.form['apellido']
-    est._persona._fechaNacimiento = request.form['fechaNacimiento']
-    est._persona._telefono = request.form['telefono']
-    est._persona._genero = request.form['genero']
-    est._persona._correo = request.form['correo']
-    est._persona._tipoIdentificacion = request.form['tipoIdentificacion']
+    est = DocenteDaoControl()
+    est._docente._id = request.form['id']
+    est._docente._nombre = request.form['nombre']
+    est._docente._apellido = request.form['apellido']
+    est._docente._fecha = request.form['fecha']
+    est._docente._genero = request.form['genero']
+    est._docente._telefono = request.form['telefono']
+    est._docente._correo = request.form['correo']
+    est._docente._tipoIdentificacion = request.form['tipoIdentificacion']
+    est._docente._tituloCuartoNivel = request.form['tituloCuartoNivel']
+    est._docente._especialidad = request.form['especialidad']
+    est._docente._cubiculo = request.form['cubiculo']
     est.save
     return redirect('/listaDocente', code = 302)
 
@@ -156,7 +170,7 @@ def modificar_docente():
     print("-----------------"+data["id"])
     nene = mdc._list().get(int(pos)-1)
     mdc._docente = nene
-    mdc._docente._nombre = data['nombre']
+    mdc._docente._ = data['nombre']
     mdc._docente._apellido = data['apellido']
     mdc._docente._direccion = data['direccion']
     mdc._docente._fechaNacimiento = data['fechaNacimiento']
