@@ -41,6 +41,7 @@ class Docente(Persona):
        
         }
 
+    @classmethod
     def deserializar(self, data):
         docente = Docente()
         docente._tituloCuartoNivel = data["tituloCuartoNivel"]

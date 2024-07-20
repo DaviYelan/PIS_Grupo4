@@ -59,7 +59,7 @@ class PeriodoAcademico:
             "fechaFin": self._fechaFin,
             "tipoEstado": self._tipoEstado
         }
-    
+    @classmethod
     def deserializar(data):
         periodo = PeriodoAcademico()
         periodo._id = data["id"]

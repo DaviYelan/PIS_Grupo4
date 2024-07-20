@@ -1,13 +1,15 @@
+from models.enumTipoIdentificacion import EnumTipoIdentificacion
 class Persona:
     def __init__(self):
-        self.__id = 0
-        self.__nombre= ""
-        self.__apellido= ""
-        self.__direccion= ""
-        self.__fechaNacimiento= ""
-        self.__genero = ""
+        self.__id = 0  
+        self.__nombre = ""
+        self.__apellido = ""
+        self.__dni = ""
         self.__telefono = ""
-        self.__tipoIdentificacion = ""
+        self.__correo = ""
+        self.__fecha = ""
+        self.__genero = ""
+        self.__tipoIdentificacion = EnumTipoIdentificacion.CEDULA
 
     @property
     def _id(self):
@@ -34,28 +36,12 @@ class Persona:
         self.__apellido = value
 
     @property
-    def _direccion(self):
-        return self.__direccion
+    def _dni(self):
+        return self.__dni
 
-    @_direccion.setter
-    def _direccion(self, value):
-        self.__direccion = value
-
-    @property
-    def _fechaNacimiento(self):
-        return self.__fechaNacimiento
-
-    @_fechaNacimiento.setter
-    def _fechaNacimiento(self, value):
-        self.__fechaNacimiento = value
-
-    @property
-    def _genero(self):
-        return self.__genero
-
-    @_genero.setter
-    def _genero(self, value):
-        self.__genero = value
+    @_dni.setter
+    def _dni(self, value):
+        self.__dni = value
 
     @property
     def _telefono(self):
@@ -64,6 +50,30 @@ class Persona:
     @_telefono.setter
     def _telefono(self, value):
         self.__telefono = value
+    
+    @property
+    def _correo(self):
+        return self.__correo
+
+    @_correo.setter
+    def _correo(self, value):
+        self.__correo = value
+
+    @property
+    def _fecha(self):
+        return self.__fecha
+
+    @_fecha.setter
+    def _fecha(self, value):
+        self.__fecha = value
+
+    @property
+    def _genero(self):
+        return self.__genero
+
+    @_genero.setter
+    def _genero(self, value):
+        self.__genero = value
 
     @property
     def _tipoIdentificacion(self):
@@ -76,27 +86,34 @@ class Persona:
     @property
     def serializable(self):
         return {
-            "id": self._id,
-            "nombre": self._nombre,
-            "apellido": self._apellido,
-            "direccion": self._direccion,
-            "fechaNacimiento": self._fechaNacimiento,
-            "genero": self._genero,
-            "telefono": self._telefono,
-            "tipoIdentificacion": self._tipoIdentificacion,
+            "id": self.__id,
+            "apellido": self.__apellido,
+            "nombre": self.__nombre,
+            "dni": self.__dni,
+            "telefono": self.__telefono,
+            "correo": self.__correo,
+            "fecha": self.__fecha,
+            "genero": self.__genero,
+            "tipo": self.__tipoIdentificacion
         }
+    
 
-    def deserializar(self, data):
+    def deserializar(data):
         persona = Persona()
         persona._id = data["id"]
         persona._nombre = data["nombre"]
         persona._apellido = data["apellido"]
-        persona._direccion = data["direccion"]
-        persona._fechaNacimiento = data["fechaNacimiento"]
-        persona._genero = data["genero"]
+        persona._dni = data["dni"]
         persona._telefono = data["telefono"]
-        persona._tipoIdentificacion = data["tipoIdentificacion"]
+        persona._correo = data["correo"]
+        persona._fecha = data["fecha"]
+        persona._genero = data["genero"]
+        persona._tipoIdentificacion = data["tipo"] 
         return persona
+
+
+
+    def __str__(self) -> str:
+        return "{" + str(self.__id) + ": " + self.__apellido + " " + self.__nombre + "}"
+ 
     
-    def __str__(self):
-        return f"ID: {self._id} Nombre: {self._nombre} Apellido: {self._apellido} Direccion: {self._direccion} Fecha de Nacimiento: {self._fechaNacimiento} Genero: {self._genero} Telefono: {self._telefono} Tipo de Identificacion: {self._tipoIdentificacion}"
