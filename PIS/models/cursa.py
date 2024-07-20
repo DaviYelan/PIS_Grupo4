@@ -1,11 +1,9 @@
-from models.estudiante import Estudiante
-
 
 class Cursa:
     def __init__(self):
         self.__id = 0
         self.__paralelo = ""
-        self.__idEstudiante = Estudiante()
+        self.__idEstudiante = 0
         self.__idAsignacion = 0
 
 
