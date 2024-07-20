@@ -1,12 +1,14 @@
-from flask import Blueprint, render_template, redirect, request, flash, abort
+from flask import Blueprint, render_template, redirect, request, flash, abort, url_for
 from controllers.personaDaoControl import PersonaDaoControl
-from flask_login import logout_user, login_required, login_user, LoginManager
+from flask_login import logout_user, login_required, login_user, LoginManager # type: ignore
 from app import db
 from models.Modelcuenta import ModelCuenta
 from models.cuenta import Cuenta
 from controllers.docenteDaoControl import DocenteDaoControl
 from controllers.materiaDaoControl import MateriaDaoControl
-
+import pandas as pd # type: ignore
+import json
+import os
 
 router = Blueprint('router', __name__)
 
@@ -219,12 +221,48 @@ def progreso():
 @router.route('/proyeccion')
 def proyeccion():
     return render_template("tempsEstudiante/estudiante/proyeccion.html")
-#------------MODULO DE MENSAJES-----------
-@router.route('/registro')
-def registro():
-    return render_template('tempsMensajes/registro.html')
+#------------MODULO DE PROYECCIONES-----------
+@router.route('/carga', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        file = request.files['file']
+        if file:
+            filename = file.filename
+            filepath = os.path.join('data', filename)
+            file.save(filepath)
+            return redirect(url_for('router.process_file', filename=filename))
+    return render_template('tempsDocente/estudiante/alumnos.html')
 
-@router.route('/sala')
-@login_required
-def sala():
-    return render_template('tempsMensajes/sala.html')
+@router.route('/process_file/<filename>', methods=['GET'])
+def process_file(filename):
+    filepath = os.path.join('data', filename)
+    df = pd.read_excel(filepath)
+
+    # Asegúrate de que las columnas existen antes de la suma
+    if all(col in df.columns for col in ['AA', 'ACD', 'APE', 'EVALUACION']):
+        df['TOTAL'] = df[['AA', 'ACD', 'APE', 'EVALUACION']].sum(axis=1)
+        df['PROYECCION'] = 21 - df['TOTAL']
+        df['PROYECCION'] = df['PROYECCION'].apply(lambda x: max(x, 0))
+        df['PASAR'] = df['TOTAL'] >= 21
+        df['PROYECCION_LINK'] = df.index.to_series().apply(lambda x: f'<a href="/projection/{x}">Proyección</a>')
+
+        # Guardar datos en JSON
+        grades_json = df.to_json(orient='records')
+        with open('data/grades.json', 'w') as f:
+            f.write(grades_json)
+
+        # Renderizar la tabla en HTML
+        return render_template('tempsDocente/estudiante/notas.html', tables=[df.to_html(classes='data', index=False, escape=False)], titles=df.columns.values)
+    else:
+        return "Error: El archivo Excel no contiene las columnas necesarias", 400
+
+@router.route('/projection/<int:student_id>', methods=['GET'])
+def student_projection(student_id):
+    with open('data/grades.json', 'r') as f:
+        grades = json.load(f)
+
+    if 0 <= student_id < len(grades):
+        student = grades[student_id]
+        return render_template('tempsDocente/estudiante/proyeccion.html', student=student)
+    else:
+        return "Estudiante no encontrado", 404

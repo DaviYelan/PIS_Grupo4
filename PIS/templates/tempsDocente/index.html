@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{{url_for('static', filename='/staticEstudiante/css/style.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='/staticEstudiante/css/area.css')}}">
-    <link rel="shortcut icon" href="{{url_for('static', filename='/staticEstudiante/img/SOL.png')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='/staticDocente/css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/staticDocente/css/area.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='/staticDocente/img/SOL.png')}}" />
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
     <title>SOL</title>
@@ -21,7 +21,7 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="{{url_for('static', filename='/staticEstudiante/img/SOL.png')}}" alt="">
+                    <img src="{{url_for('static', filename='/staticDocente/img/SOL.png')}}" alt="">
                 </span>
 
                 <div class="text logo-text">
@@ -47,13 +47,13 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="/alumnos">
+                        <a href="/carga">
                             <i class='bx bxs-food-menu icon'></i> 
                             <span class="text nav-text">Estudiantes</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="/notificacion">
+                        <a href="/projection/">
                             <i class='bx bx-bell icon'></i>
                             <span class="text nav-text">Notificaciones</span>
                         </a>
@@ -159,8 +159,8 @@
         </div>
     </section>
 
-    <script src="{{url_for('static', filename='/staticEstudiante/js/area.js')}}"></script>
-    <script src="{{url_for('static', filename='/staticEstudiante/js/script.js')}}"></script>
+    <script src="{{url_for('static', filename='/staticDocente/js/area.js')}}"></script>
+    <script src="{{url_for('static', filename='/staticDocente/js/script.js')}}"></script>
 </body>
 
 </html>
