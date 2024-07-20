@@ -44,7 +44,7 @@ body.dark{
 }
 
 /* ===== Sidebar ===== */
- .sidebar{
+.sidebar{
     position: fixed;
     top: 0;
     left: 0;
@@ -53,7 +53,7 @@ body.dark{
     padding: 10px 14px;
     background: var(--sidebar-color);
     transition: var(--tran-05);
-    z-index: 100;  
+    z-index: 100;
 }
 .sidebar.close{
     width: 88px;
@@ -284,7 +284,6 @@ body.dark .switch::before{
 
 .home{
     position: absolute;
-    top: 0;
     top: 0;
     left: 250px;
     height: 100vh;
