@@ -23,7 +23,6 @@ class UnidadDaoControl(DaoAdapter):
     
     @property
     def save(self):
-        self._unidad._id = self._lista._lenght + 1
         self._save(self._unidad)
     
     def merge(self, pos):

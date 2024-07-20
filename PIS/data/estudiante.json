@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "nombre": "Darwin",
+    "apellido": "Perez",
+    "fecha": "2021-01-02",
+    "genero": "Masculino",
+    "telefono": "0987654321",
+    "correo": "darwin.perez@unl.edu.ec",
+    "orden": "PRIMERA MATRICULA",
+    "ciclo": 1
+  },
+  {
+    "id": 2,
+    "nombre": "Darwin",
+    "apellido": "Perez",
+    "fecha": "2021-01-02",
+    "genero": "Masculino",
+    "telefono": "0987654321",
+    "correo": "darwin.perez@unl.edu.ec",
+    "orden": "PRIMERA MATRICULA",
+    "ciclo": 1
+  },
+  {
+    "id": 3,
+    "nombre": "Darwin",
+    "apellido": "Perez",
+    "fecha": "2021-01-02",
+    "genero": "Masculino",
+    "telefono": "0987654321",
+    "correo": "darwin.perez@unl.edu.ec",
+    "orden": "SEGUNDA MATRICULA",
+    "ciclo": 2
+  }
+]

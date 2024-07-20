@@ -23,7 +23,7 @@ class UniversidadDaoControl(DaoAdapter):
     
     @property
     def save(self):
-        self._universidad._id = self._lista._lenght + 1
+        self._universidad._id = self._lista._length + 1
         self._save(self._universidad)
     
     def merge(self, pos):

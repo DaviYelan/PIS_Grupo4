@@ -7,21 +7,20 @@ class EstudianteDaoControl(DaoAdapter):
 
     @property
     def _estudiante(self):
-        if self.__estudiante is None:
-            self.__estudiante = (Estudiante)
+        if self.__estudiante == None:
+            self.__estudiante = Estudiante()
         return self.__estudiante
 
-    @_estudiante.setter
+    @ _estudiante.setter
     def _estudiante(self, value):
         self.__estudiante = value
 
     @property
     def _lista(self):
-        return self._list()
+        return self._list
     
     @property
     def save(self):
-        self._estudiante._id = self._lista._lenght + 1
         self._save(self._estudiante)
     
     def merge(self, pos):
@@ -29,3 +28,7 @@ class EstudianteDaoControl(DaoAdapter):
     
     def delete(self, pos):
         self._delete(self._estudiante, pos)
+
+
+
+
