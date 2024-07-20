@@ -59,7 +59,8 @@ try:
      pdc._persona._apellido = "Perez"
      pdc._persona._direccion = "Av. Túpac Amaru 210"
      pdc._persona._telefono = "0987654321"
-     pdc._persona._fechaNacimiento = "2000-01-01"
+     pdc._persona._correo = "juan.perez@unl.edu.ec"
+     pdc._persona._fecha = "2000-01-01"
      pdc._persona._genero = "Masculino"
      pdc._persona._tipoIdentificacion = "Cedula"
      pdc.save
