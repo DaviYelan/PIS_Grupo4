@@ -1,6 +1,6 @@
 from models.persona import Persona
 
-class Alumno(Persona):
+class Estudiante(Persona):
     def __init__(self):
         super().__init__()
         self.__id = ""
@@ -48,7 +48,7 @@ class Alumno(Persona):
 
     @classmethod
     def deserializar(self, data):
-        docente = Alumno()
+        docente = Estudiante()
         docente._id = data["id"]
         docente._nombre = data["nombre"]
         docente._apellido = data["apellido"]
