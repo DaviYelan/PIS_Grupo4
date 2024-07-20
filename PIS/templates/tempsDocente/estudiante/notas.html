@@ -1,0 +1,19 @@
+{% extends "tempsDocente/index.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notas de los Estudiantes</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='staticDocente/css/prueba.css') }}">
+</head>
+<body>
+    <h1>Notas de los Estudiantes</h1>
+    <div>
+        {% for table in tables %}
+            {{ table | safe }}
+        {% endfor %}
+    </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "tempsDocente/index.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proyección del Estudiante</title>
+</head>
+<body>
+    <h1>Proyección de {{ student['Nombre'] }} {{ student['Apellido'] }}</h1>
+    <p>Nota Total: {{ student['TOTAL'] }}</p>
+    <p>Proyección para Pasar: {{ student['PROYECCION'] }}</p>
+    <p>Pasar: {{ 'Sí' if student['PASAR'] else 'No' }}</p>
+</body>
+</html>
+{% endblock %}
