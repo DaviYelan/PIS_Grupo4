@@ -11,7 +11,3 @@ class Cuenta(UserMixin):
     @classmethod
     def check_password(cls, hashed_password, clave):
         return check_password_hash(hashed_password, clave)
-
-    #print(generate_password_hash("grupocuatro"))
-    #print(generate_password_hash("lore"))
-    #print(generate_password_hash("456"))
