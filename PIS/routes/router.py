@@ -41,11 +41,10 @@ def login():
                 else:
                     flash("Rol no encontrado")
             else:
-                flash("Usuario o contraseña incorrectos")
+                flash("Usuario no encontrado")
         else:
-            flash("Usuario No encontrado")
+            flash("Usuario o contraseña incorrectos")
     return render_template("tempsLogin/auth/login.html")
-
 
 @router.route('/logout')
 @login_required
