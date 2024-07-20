@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "fecha": "2021-01-01",
+    "telefono": "0987654321",
+    "genero": "Masculino",
+    "correo": "juan.perez@unl.edu.ec",
+    "tipoIdentificacion": "Cedula",
+    "tituloCuartoNivel": "Ingeniero en Sistemas",
+    "especialidad": "Ingeniero en Sistemas",
+    "cubiculo": "A-1"
+  },
+  {
+    "id": 2,
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "fecha": "2021-01-01",
+    "telefono": "0987654321",
+    "genero": "Masculino",
+    "correo": "juan.perez@unl.edu.ec",
+    "tipoIdentificacion": "Cedula",
+    "tituloCuartoNivel": "Ingeniero en Sistemas",
+    "especialidad": "Ingeniero en Sistemas",
+    "cubiculo": "A-1"
+  }
+]
