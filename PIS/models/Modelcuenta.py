@@ -1,12 +1,14 @@
-from models.cuenta import Cuenta
-    
+from werkzeug.security import check_password_hash
+from flask_login import UserMixin # type: ignore
+from models.cuenta import Cuenta 
+
 class ModelCuenta:
     @classmethod
     def login(cls, db, cuenta):
         try:
-            cursor = db.connection.cursor()
-            sql = "SELECT id, correo, clave, role FROM cuenta WHERE correo = '{}'".format(cuenta.correo)
-            cursor.execute(sql)
+            cursor = db.cursor()
+            sql = "SELECT IDCUENTA, CORREO, CLAVE, ROL FROM cuenta WHERE CORREO = :correo"
+            cursor.execute(sql, correo=cuenta.correo)
             row = cursor.fetchone()
             if row:
                 is_valid_password = Cuenta.check_password(row[2], cuenta.clave)
@@ -19,12 +21,13 @@ class ModelCuenta:
         except Exception as ex:
             raise Exception(ex)
 
+
     @classmethod
     def get_by_id(cls, db, id):
         try:
-            cursor = db.connection.cursor()
-            sql = "SELECT id, correo, role FROM cuenta WHERE id = {}".format(id)
-            cursor.execute(sql)
+            cursor = db.cursor()
+            sql = "SELECT IDCUENTA, CORREO, ROL FROM cuenta WHERE IDCUENTA = :id"
+            cursor.execute(sql, id=id)
             row = cursor.fetchone()
             if row:
                 return Cuenta(row[0], row[1], None, row[2])
@@ -32,3 +35,4 @@ class ModelCuenta:
                 return None
         except Exception as ex:
             raise Exception(ex)
+
