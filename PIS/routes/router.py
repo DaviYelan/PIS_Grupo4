@@ -1,7 +1,6 @@
-from flask import Blueprint, render_template, redirect, request, flash, abort, url_for
+from flask import Blueprint, g, render_template, redirect, request, flash, abort, url_for
 from controllers.personaDaoControl import PersonaDaoControl
 from flask_login import logout_user, login_required, login_user, LoginManager # type: ignore
-from app import db
 from models.Modelcuenta import ModelCuenta
 from models.cuenta import Cuenta
 from controllers.docenteDaoControl import DocenteDaoControl
@@ -9,15 +8,7 @@ from controllers.materiaDaoControl import MateriaDaoControl
 import pandas as pd # type: ignore
 import json
 import os
-
 router = Blueprint('router', __name__)
-
-login_manager = LoginManager()
-
-@login_manager.user_loader
-def load_user(id):
-    return ModelCuenta.get_by_id(db, id)
-
 
 #-------------LOGIN--------------
 @router.route('/')
@@ -30,15 +21,13 @@ def login():
         username = request.form['username']
         password = request.form['password']
         cuenta = Cuenta(0, username, password)
-        logged_user = ModelCuenta.login(db, cuenta)
+        logged_user = ModelCuenta.login(g.db, cuenta)
         if logged_user:
             if logged_user.clave:
                 login_user(logged_user)
-                if logged_user.role == 'admin':
+                if logged_user.rol == 'admin':
                     return redirect("/login/moduloAdmin")
-                elif logged_user.role == 'estudiante':
-                    return redirect("/login/moduloEstudiantes")
-                elif logged_user.role == 'docente':
+                elif logged_user.rol == 'docente':
                     return redirect("/login/moduloDocentes")
                 else:
                     flash("Rol no encontrado")

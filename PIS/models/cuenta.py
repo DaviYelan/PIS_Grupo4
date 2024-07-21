@@ -1,12 +1,12 @@
 from werkzeug.security import check_password_hash, generate_password_hash
-from flask_login import UserMixin
+from flask_login import UserMixin # type: ignore
 
 class Cuenta(UserMixin):
-    def __init__(self, id, correo, clave, role=None):
+    def __init__(self, id, correo, clave, rol=None):
         self.id = id
         self.correo = correo
         self.clave = clave
-        self.role = role
+        self.rol = rol
 
     @classmethod
     def check_password(cls, hashed_password, clave):

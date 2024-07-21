@@ -1,7 +1,6 @@
 from os import environ, path
 from dotenv import load_dotenv
 
-
 base_dir = path.abspath(path.dirname('__file'))
 load_dotenv(path.join(base_dir, 'config/.env'))
 
@@ -14,11 +13,13 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    MYSQL_HOST = 'localhost'
-    MYSQL_USER = 'root'
-    MYSQL_PASSWORD = 'Kenichi20'
-    MYSQL_DB = 'pis'
+    ORACLE_HOST = 'localhost'
+    ORACLE_PORT = '1521'
+    ORACLE_SID = 'xe'
+    ORACLE_USER = 'PIS'
+    ORACLE_PASSWORD = 'Kenichi04'
+    ORACLE_DB = 'PIS'
 
-config = { 
+config = {
     'development': DevelopmentConfig
 }
