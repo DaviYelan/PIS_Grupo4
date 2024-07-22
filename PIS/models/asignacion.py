@@ -1,16 +1,8 @@
-from models.cursa import Cursa
-from models.docente import Docente
-from models.materia import Materia
-from models.rubrica import Rubrica
-
-
 class Asignacion:
     def __init__(self):
         self.__id = 0
-        self.__idCurso = Cursa()
-        self.__idMateria = Materia()
-        self.__idDocente = Docente()
-        self.__idRubrica = Rubrica()
+        self.__idMateria = None
+        self.__idDocente = None
 
     @property
     def _id(self):
@@ -19,14 +11,6 @@ class Asignacion:
     @_id.setter
     def _id(self, value):
         self.__id = value
-
-    @property
-    def _idCurso(self):
-        return self.__idCurso
-
-    @_idCurso.setter
-    def _idCurso(self, value):
-        self.__idCurso = value
 
     @property
     def _idMateria(self):
@@ -45,20 +29,17 @@ class Asignacion:
         self.__idDocente = value
 
     @property
-    def _idRubrica(self):
-        return self.__idRubrica
-
-    @_idRubrica.setter
-    def _idRubrica(self, value):
-        self.__idRubrica = value
-
-
-    @property
     def serializable(self):
         return {
             "id": self._id,
-            "idCurso": self._idCurso.serializable,
-            "idMateria": self._idMateria.serializable,
-            "idDocente": self._idDocente.serializable,
-            "idRubrica": self._idRubrica.serializable
+            "idMateria": self._idMateria,
+            "idDocente": self._idDocente
         }
+
+    @classmethod
+    def deserializar(cls, data):
+        asignacion = Asignacion()
+        asignacion._id = data.get("id", 0)
+        asignacion._idMateria = data.get("idMateria")
+        asignacion._idDocente = data.get("idDocente")
+        return asignacion

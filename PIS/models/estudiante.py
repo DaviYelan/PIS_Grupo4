@@ -1,64 +1,84 @@
-from models.persona import Persona
+import json
+import os
+import pandas as pd #type: ignore
 
-class Estudiante(Persona):
-    def __init__(self):
-        super().__init__()
-        self.__id = ""
-        self.__orden = ""
-        self.__ciclo = 0
+DATA_FILE = "data/students.json"
+class Estudiante:
+    def __init__(self, nombre, apellido, matricula):
+        self.nombre = nombre
+        self.apellido = apellido
+        self.matricula = matricula
+        self.scores = {}
 
-    @property
-    def _id(self):
-        return self.__id
 
-    @_id.setter
-    def _id(self, value):
-        self.__id = value
+def load_data():
+    if os.path.exists(DATA_FILE):
+        with open(DATA_FILE, "r") as f:
+            return json.load(f)
+    return {}
 
-    @property
-    def _orden(self):
-        return self.__orden
 
-    @_orden.setter
-    def _orden(self, value):
-        self.__orden = value
+def load_excel_data():
+    data = {}
+    for unit in range(1, 4):
+        try:
+            df = pd.read_excel(f"uploads/unit{unit}_data.xlsx")
+            data[f"unit{unit}"] = df.to_dict("records")
+        except FileNotFoundError:
+            data[f"unit{unit}"] = []
+    return data
 
-    @property
-    def _ciclo(self):
-        return self.__ciclo
 
-    @_ciclo.setter
-    def _ciclo(self, value):
-        self.__ciclo = value
+def save_data(data):
+    with open(DATA_FILE, "w") as f:
+        json.dump(data, f, indent=4)
 
-    @property
-    def serializable(self):
-        return {
-            "id": self._id,
-            "nombre": self._nombre,
-            "apellido": self._apellido,
-            "fecha": self._fecha,
-            "genero": self._genero,
-            "telefono": self._telefono,
-            "correo": self._correo,
-            "orden": self._orden,
-            "ciclo": self._ciclo
-       
-        }
 
-    @classmethod
-    def deserializar(self, data):
-        docente = Estudiante()
-        docente._id = data["id"]
-        docente._nombre = data["nombre"]
-        docente._apellido = data["apellido"]
-        docente._fecha = data["fecha"]
-        docente._genero = data["genero"]
-        docente._telefono = data["telefono"]
-        docente._correo = data["correo"]
-        docente._orden = data["orden"]
-        docente._ciclo = data["ciclo"]
-        return docente
-    
-    def __str__(self):
-        return f"{super().__str__()} Tipo: {self._tipo} Orden: {self._orden} Ciclo: {self._ciclo}"
+def calculate_averages(data):
+    results = {}
+    for student, info in data.items():
+        all_scores = []
+        for unit in ["unit1", "unit2", "unit3"]:
+            if unit in info:
+                scores = [
+                    float(score)
+                    for score in info[unit]
+                    if isinstance(score, (int, float))
+                ]
+                all_scores.extend(scores)
+
+        if all_scores:
+            average_score = sum(all_scores) / len(all_scores)
+            results[student] = {
+                "average": average_score,
+                "matricula": info["matricula"],
+                "categoria": get_category(average_score),
+                "unit_scores": {
+                    unit: info.get(unit, []) for unit in ["unit1", "unit2", "unit3"]
+                },
+            }
+    return results
+
+
+def get_category(average):
+    if 8.5 <= average <= 10:
+        return "A"
+    elif 7.5 <= average < 8.5:
+        return "B"
+    elif 5 <= average < 7.5:
+        return "C"
+    else:
+        return "D"
+
+
+def find_primes(n):
+    primes = []
+    for num in range(2, n + 1):
+        is_prime = True
+        for i in range(2, int(num**0.5) + 1):
+            if num % i == 0:
+                is_prime = False
+                break
+        if is_prime:
+            primes.append(num)
+    return primes

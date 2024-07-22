@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes - Sistema de Gestión Académica</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='/staticEstudiante/css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/staticEstudiante/css/area.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='/staticEstudiante/img/SOL.png')}}" />
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<style>
+    .reportes-container {
+        padding: 10px;
+    }
+
+    .reporte-item {
+        background-color: var(--sidebar-color);
+        border-radius: 6px;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .reporte-item h2 {
+        color: var(--text-color);
+        margin-top: 0;
+    }
+
+    .reporte-item p {
+        color: var(--text-color);
+        margin: 3px 0;
+    }
+
+    .btn-ver,
+    .btn-descargar {
+        background-color: var(--primary-color);
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-ver:hover,
+    .btn-descargar:hover {
+        background-color: var(--primary-color-light);
+    }
+
+    .reporte-details {
+        margin-top: 10px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        border: 1px solid var(--border-color);
+        padding: 6px 8px;
+        /* Reducido el padding */
+        text-align: left;
+        color: var(--text-color);
+    }
+
+    th {
+        background-color: var(--primary-color-light);
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: var(--secondary-color);
+    }
+
+    tr:hover {
+        background-color: var(--primary-color-light);
+    }
+
+    body.dark .reporte-item {
+        background-color: var(--sidebar-color);
+    }
+
+    body.dark th {
+        background-color: var(--primary-color);
+    }
+
+    body.dark .btn-ver,
+    body.dark .btn-descargar {
+        background-color: var(--primary-color);
+    }
+
+    body.dark .btn-ver:hover,
+    body.dark .btn-descargar:hover {
+        background-color: var(--primary-color-light);
+    }
+</style>
+
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="{{url_for('static', filename='/staticEstudiante/img/SOL.png')}}" alt="">
+                </span>
+                <div class="text logo-text">
+                    <span class="name">SOL</span>
+                    <span class="profession">Docente</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="/login/moduloDocentes">
+                            <i class='bx bxs-graduation icon'></i>
+                            <span class="text nav-text">Ciclos</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/login/moduloDocentes/reportes">
+                            <i class='bx bx-download icon'></i>
+                            <span class="text nav-text">Reportes</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <ul>
+                    <li>
+                        <a href="/logout">
+                            <i class='bx bx-log-out icon'></i>
+                            <span class="text nav-text">Logout</span>
+                        </a>
+                    </li>
+                    <li class="mode">
+                        <div class="sun-moon">
+                            <i class='bx bx-moon icon moon'></i>
+                            <i class='bx bx-sun icon sun'></i>
+                        </div>
+                        <span class="mode-text text">Dark mode</span>
+                        <div class="toggle-switch">
+                            <span class="switch"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="home">
+        <div class="form-container table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID Reporte</th>
+                        <th>Nombre Docente</th>
+                        <th>Materia</th>
+                        <th>Ciclo</th>
+                        <th>Fecha</th>
+                        <th>Tipo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reporte in reportes %}
+                    <tr>
+                        <td>{{ reporte.id_reporte }}</td>
+                        <td>{{ reporte.nombre_docente }}</td>
+                        <td>{{ reporte.materia }}</td>
+                        <td>{{ reporte.ciclo }}</td>
+                        <td>{{ reporte.fecha }}</td>
+                        <td>{{ reporte.tipo }}</td>
+                        <td>
+                            <button class="btn-ver" onclick="toggleReporteDetails('{{ loop.index0 }}')">Ver
+                                detalles</button>
+                            <button class="btn-descargar" onclick="downloadReport('{{ reporte.id_reporte }}')">Descargar
+                                Excel</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% for reporte in reportes %}
+            <div id="reporte-details-{{ loop.index0 }}" class="reporte-details" style="display: none;">
+                <h3>Datos del Reporte #{{ reporte.id_reporte }}</h3>
+                <p><strong>Nombre Docente:</strong> {{ reporte.nombre_docente }}</p>
+                <p><strong>Materia:</strong> {{ reporte.materia }}</p>
+                <p><strong>Ciclo:</strong> {{ reporte.ciclo }}</p>
+                <p><strong>Fecha:</strong> {{ reporte.fecha }}</p>
+                <p><strong>Tipo:</strong> {{ reporte.tipo }}</p>
+                <p><strong>Archivo Excel:</strong> {{ reporte.excel_filename }}</p>
+                <a href="{{ reporte.descargar_informe }}" class="btn-descargar">Descargar Informe</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.full.min.js"></script>
+    <script src="{{url_for('static', filename='/staticEstudiante/js/area.js')}}"></script>
+    <script src="{{url_for('static', filename='/staticEstudiante/js/script.js')}}"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const body = document.querySelector("body"),
+                sidebar = body.querySelector(".sidebar"),
+                toggle = body.querySelector(".toggle"),
+                searchBtn = body.querySelector(".search-box"),
+                modeSwitch = body.querySelector(".toggle-switch"),
+                modeText = body.querySelector(".mode-text");
+
+            toggle.addEventListener("click", () => {
+                sidebar.classList.toggle("close");
+            });
+
+            searchBtn.addEventListener("click", () => {
+                sidebar.classList.remove("close");
+            });
+
+            modeSwitch.addEventListener("click", () => {
+                body.classList.toggle("dark");
+
+                if (body.classList.contains("dark")) {
+                    modeText.innerText = "Modo Claro";
+                } else {
+                    modeText.innerText = "Modo Oscuro";
+                }
+            });
+
+            window.toggleReporteDetails = function (index) {
+                var details = document.getElementById('reporte-details-' + index);
+                if (details.style.display === "none") {
+                    details.style.display = "block";
+                } else {
+                    details.style.display = "none";
+                }
+            }
+
+            window.downloadReport = function (reportId) {
+                window.location.href = `/login/moduloDocentes/download_report/${reportId}`;
+            }
+        });
+    </script>
+</body>
+
+</html>
