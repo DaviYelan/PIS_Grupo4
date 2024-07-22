@@ -9,14 +9,13 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{url_for('static', filename='/staticAdmin/css/style.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='/staticAdmin/css/area.css')}}">
-    
-    <link rel="shortcut icon" href="{{url_for('static', filename='/staticAdmin/img/SOL.png')}}" />
+    <link rel="shortcut icon" href="{{url_for('static',filename='/staticAdmin/img/SOL.png')}}" />
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
     <title>SOL</title>
 </head>
 
-<body>
+<body class="{{ 'dark' if dark_mode else '' }}">
 
     <nav class="sidebar">
         <header>
@@ -24,23 +23,17 @@
                 <span class="image">
                     <img src="{{url_for('static', filename='/staticAdmin/img/SOL.png')}}" alt="">
                 </span>
-
                 <div class="text logo-text">
                     <span class="name">SOL</span>
                     <span class="profession">Administrador</span>
                 </div>
             </div>
-
             <i class='bx bx-chevron-right toggle'></i>
         </header>
 
         <div class="menu-bar">
             <div class="menu">
                 <ul class="menu-links">
-                    <li class="search-box">
-                        <i class='bx bx-search icon'></i>
-                        <input type="text" placeholder="Search...">
-                    </li>
                     <li class="nav-link">
                         <a href="/accionDocente">
                             <i class='bx bxs-user-pin icon'></i>
@@ -53,6 +46,12 @@
                             <span class="text nav-text">Materias</span>
                         </a>
                     </li>
+                    <li class="nav-link">
+                        <a href="/asignarMaestro">
+                            <i class='bx bx-food-menu icon'></i>
+                            <span class="text nav-text">Gestión</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -61,16 +60,15 @@
                     <li>
                         <a href="/logout">
                             <i class='bx bx-log-out icon'></i>
-                            <span class="text nav-text">Logout</span>
+                            <span class="text nav-text">Cerrar Sesión</span>
                         </a>
                     </li>
-
                     <li class="mode">
                         <div class="sun-moon">
                             <i class='bx bx-moon icon moon'></i>
                             <i class='bx bx-sun icon sun'></i>
                         </div>
-                        <span class="mode-text text">Dark mode</span>
+                        <span class="mode-text text">Ligth Mode</span>
                         <div class="toggle-switch">
                             <span class="switch"></span>
                         </div>
@@ -79,7 +77,6 @@
             </div>
         </div>
     </nav>
-
 
     <section class="home">
         <div class="main-content">
@@ -104,8 +101,7 @@
                         <p>Comparte mensajes importantes y mantente conectado.</p>
                     </div>
                 </div>
-                <h1>Ademas presentamos nuestra sala de chat en donde podras interactuar en tiempo real con tus docentes
-                </h1>
+                <h1>Además presentamos nuestra sala de chat en donde podrás interactuar en tiempo real con tus docentes</h1>
                 <div>
                     <style>
                         .chat-button {
@@ -141,8 +137,34 @@
             {% endblock %}
         </div>
     </section>
-    <script src="{{url_for('static', filename='/staticAdmin/js/script.js')}}"></script>
+
     <script src="{{url_for('static', filename='/staticAdmin/js/area.js')}}"></script>
+    <script src="{{url_for('static', filename='/staticAdmin/js/script.js')}}"></script>
+    <script>
+        // JavaScript para alternar el modo oscuro
+        document.addEventListener("DOMContentLoaded", function() {
+            const modeSwitch = document.querySelector(".toggle-switch");
+            const body = document.querySelector("body");
+            const modeText = document.querySelector(".mode-text");
+
+            // Verificar el estado del modo oscuro desde localStorage
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add("dark");
+                modeText.innerText = "Light mode";
+            }
+
+            modeSwitch.addEventListener("click", () => {
+                body.classList.toggle("dark");
+                if (body.classList.contains("dark")) {
+                    modeText.innerText = "Dark mode";
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    modeText.innerText = "Light mode";
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

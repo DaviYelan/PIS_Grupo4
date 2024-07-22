@@ -1,100 +1,75 @@
-from typing import TypeVar, Generic, Type
-from controllers.tda.linked.linkedList import Linked_List
-import os.path
-
-import json
-import os
+from typing import List, TypeVar, Generic, Type
+from controllers.connecction.connection import Connection
 
 T = TypeVar('T')
+
 class DaoAdapter(Generic[T]):
     atype: Type[T]
 
-    def __init__(self, atype: Type[T]):
+    def __init__(self, atype: Type[T], connection: Connection):
         self.atype = atype
-        self.lista = Linked_List()
-        self.file = atype.__name__.lower()+".json"
-        self.URL = os.path.dirname(os.path.abspath(os.path.dirname(os.path.dirname(__file__)))) + "/data/"
+        self.connection = connection
+        self.table_name = atype.__name__.upper()
 
     def _list(self):
-        if os.path.isfile(self.URL+self.file):
-            f = open(self.URL+self.file, "r")
-            datos = json.load(f)
-            self.lista.clear   
-            for data in datos:
-                a = self.atype.deserializar(data) 
-                self.lista.addNode(a, self.lista._length)
-        return self.lista
-    
-    def __transform__(self):
-        aux = "["
-        for i in range(0, self.lista._length):
-            if i < self.lista._length - 1:
-                aux += str(json.dumps(self.lista.getNode(i).serializable)) + ","
-            else:
-                aux += str(json.dumps(self.lista.getNode(i).serializable))
-        aux += "]"
+        query = f"SELECT * FROM {self.table_name}"
+        cursor = self.connection.execute(query)
+        results = cursor.fetchall()
+        print(f"Results: {results}")  
+        print(f"Cursor Description: {cursor.description}") 
+        objects_list = []
+        column_names = [description[0] for description in cursor.description]
+        for row in results:
+            data_dict = dict(zip(column_names, row))
+            print(f"Data Dict: {data_dict}") 
+            obj = self.atype.deserializar(data_dict)
+            objects_list.append(obj)
+        return objects_list
 
-        return aux
-    
-    def to_dic_lista(self, lista):
-        aux = []
-        arreglo = lista.toArray
-        for i in range(0, lista._length):
-            aux.append(arreglo[i].serializable)
-        return aux
-    
-    def to_dic(self):
-        aux = []
-        self._list()
-        for i in range(0, self.lista._length):
-            aux.append(self.lista.getNode(i).serializable)
-
-        return aux
-    
     def _get(self, id):
-        list = self._list()
-        array = list.toArray
-        for i in range(0, len(array)):
-            if array[i]._id == id:
-                return array[i]
+        query = f"SELECT * FROM {self.table_name} WHERE ID = :id"
+        cursor = self.connection.execute(query, {'id': id})
+        row = cursor.fetchone()
+        if row:
+            data_dict = {description[0]: value for description, value in zip(cursor.description, row)}
+            return self.atype.deserializar(data_dict)
         return None
-        
     
-    def _save_json(self, data):
-        name = self.atype.__name__
-        with open("../files/"+ name + ".json", "w") as outfile:
-            json.dump(data, outfile, indent=4)
+    def _save(self, data: T):
+            columns = data.serializable.keys()
+            placeholders = ', '.join([':' + col for col in columns])
+            max_id_query = f"SELECT MAX(ID) FROM {self.table_name}"
+            cursor = self.connection.execute(max_id_query)
+            max_id = cursor.fetchone()[0]
+            next_id = (max_id or 0) + 1
+            query = f"INSERT INTO {self.table_name} (ID, {', '.join(columns)}) VALUES (:id, {placeholders})"
+            params = data.serializable
+            params['id'] = next_id
+            self.connection.execute(query, params)
+            self.connection.connection.commit()
 
-    def read_json(self):
-        if os.path.exists("../files/persona.json"): #si existe el archivo
-            with open("../files/persona.json") as file: #abrir archivo
-                data = json.load(file)
-                self.lista = None
-                return self.lista.dicToList(data)
-        else:
-           return self.__lista
+    def _merge(self, data, id):
+        columns = data.serializable.keys()
+        set_clause = ', '.join([f"{col} = :{col}" for col in columns if col != 'id'])
+        query = f"UPDATE {self.table_name} SET {set_clause} WHERE ID = :id"
+        params = {**data.serializable, 'id': id}
+        print(f"Query: {query}")
+        print(f"Params: {params}")
+        try:
+            self.connection.execute(query, params)
+            self.connection.connection.commit()
+            print("Update successful")
+        except Exception as e:
+            print(f"Error al actualizar el registro: {e}")
+            self.connection.connection.rollback()
 
-    
 
-    def _save(self, data) -> T:
-        self._list()
-        self.lista.addNode(data, self.lista._length) 
-        data._id = self.lista._length
-        a = open(self.URL+self.file, "w")
-        a.write(self.__transform__())
-        a.close()
 
-    def _merge(self, data: T, pos) -> T:
-        data = self.lista.getNode(pos)  #para obtener el id
-        self._list()
-        self.lista.edit(data, pos)
-        a = open(self.URL+self.file, "w")
-        a.write(self.__transform__())
-        a.close()
-    
-    def _delete(self, pos) -> T:
-        self._list()
-        self.lista.delete(pos)
-        a = open(self.URL + self.file, "w")
-        a.write(self.__transform__())
-        a.close()
+    def _delete(self, id):
+        query = f"DELETE FROM {self.table_name} WHERE ID = :id"
+        try:
+            self.connection.execute(query, {'id': id})
+            self.connection.connection.commit()
+        except Exception as e:
+            print(f"Error al eliminar el registro con ID {id}: {e}")
+            self.connection.connection.rollback()

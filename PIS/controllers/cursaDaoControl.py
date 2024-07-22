@@ -3,8 +3,8 @@ from controllers.dao.daoAdapter import DaoAdapter
 from models.cursa import Cursa
 
 class CursaDaoControl(DaoAdapter):
-    def __init__(self):
-        super().__init__(Cursa)
+    def __init__(self,connection):
+        super().__init__(Cursa, connection)
         self.__cursa = None
 
     @property

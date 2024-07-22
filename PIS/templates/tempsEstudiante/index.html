@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='/staticEstudiante/css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/staticEstudiante/css/area.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='/staticEstudiante/img/SOL.png')}}" />
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>SOL</title>
+</head>
+
+<body>
+
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="{{url_for('static', filename='/staticEstudiante/img/SOL.png')}}" alt="">
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name">SOL</span>
+                    <span class="profession">Estudiante</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="search-box">
+                        <i class='bx bx-search icon'></i>
+                        <input type="text" placeholder="Search...">
+                    </li>
+                    <li class="nav-link">
+                        <a href="/login/moduloEstudiantes">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Area Principal</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/calendario">
+                            <i class='bx bx-calendar bx-flip-horizontal icon'></i>
+                            <span class="text nav-text">Calendario</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/notificacion">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Notificaciones</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/sala">
+                            <i class='bx bx-chat icon'></i>
+                            <span class="text nav-text">Mensajes</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/cursos">
+                            <i class='bx bxs-graduation icon'></i>
+                            <span class="text nav-text">Cursos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <ul>
+                    <li>
+                        <a href="/logout">
+                            <i class='bx bx-log-out icon'></i>
+                            <span class="text nav-text">Logout</span>
+                        </a>
+                    </li>
+
+                    <li class="mode">
+                        <div class="sun-moon">
+                            <i class='bx bx-moon icon moon'></i>
+                            <i class='bx bx-sun icon sun'></i>
+                        </div>
+                        <span class="mode-text text">Dark mode</span>
+                        <div class="toggle-switch">
+                            <span class="switch"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="home">
+        <div class="main-content">
+            {% block content %}
+            <div class="text-column">
+                <h1>Bienvenido a Sol</h1>
+                <p>¡Gestiona el rendimiento académico de tus estudiantes de manera eficiente!</p>
+                <div class="features">
+                    <div class="feature">
+                        <i class='bx bx-calendar-check'></i>
+                        <h2>Calendario Académico</h2>
+                        <p>Organiza tus fechas importantes como exámenes, entregas de proyectos escolares.</p>
+                    </div>
+                    <div class="feature">
+                        <i class='bx bx-book-open'></i>
+                        <h2>Calificaciones</h2>
+                        <p>Consulta las notas de forma fácil y rápida.</p>
+                    </div>
+                    <div class="feature">
+                        <i class='bx bx-chat'></i>
+                        <h2>Notificaciones</h2>
+                        <p>Comparte mensajes importantes y mantente conectado.</p>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+    </section>
+
+    <script src="{{url_for('static', filename='/staticEstudiante/js/area.js')}}"></script>
+    <script src="{{url_for('static', filename='/staticEstudiante/js/script.js')}}"></script>
+</body>
+
+</html>

@@ -2,9 +2,9 @@ class Materia:
     def __init__(self):
         self.__id = 0  
         self.__nombre = ""
-        self.__numeroHoraSemana = 0
-        self.__ciclo = ''
-
+        self.__codigo = ""
+        self.__numeroHoraSemanal = 0
+        self.__ciclo = 0
 
     @property
     def _id(self):
@@ -23,12 +23,20 @@ class Materia:
         self.__nombre = value
 
     @property
-    def _numeroHoraSemana(self):
-        return self.__numeroHoraSemana
+    def _codigo(self):
+        return self.__codigo
 
-    @_numeroHoraSemana.setter
-    def _numeroHoraSemana(self, value):
-        self.__numeroHoraSemana = value
+    @_codigo.setter
+    def _codigo(self, value):
+        self.__codigo = value
+
+    @property
+    def _numeroHoraSemanal(self):
+        return self.__numeroHoraSemanal
+
+    @_numeroHoraSemanal.setter
+    def _numeroHoraSemanal(self, value):
+        self.__numeroHoraSemanal = value
 
     @property
     def _ciclo(self):
@@ -41,19 +49,21 @@ class Materia:
     @property
     def serializable(self):
         return {
-            "id": self._id,
             "nombre": self._nombre,
-            "numeroHoraSemana": self._numeroHoraSemana,
+            "codigo": self._codigo,
+            "numeroHoraSemanal": self._numeroHoraSemanal,
             "ciclo": self._ciclo
         }
-    
-    def deserializar(data):
+
+    @classmethod
+    def deserializar(cls, data):
         materia = Materia()
-        materia._id = data["id"]
-        materia._nombre = data["nombre"]
-        materia._numeroHoraSemana = data["numeroHoraSemana"]
-        materia._ciclo = data["ciclo"]
+        materia._id = data.get("ID", 0)
+        materia._nombre = data.get("NOMBRE", "")
+        materia._codigo = data.get("CODIGO", "")
+        materia._numeroHoraSemanal = data.get("NUMEROHORASEMANAL", 0)
+        materia._ciclo = data.get("CICLO", 0)
         return materia
-    
+
     def __str__(self):
-        return f"{self._id} {self._nombre} {self._numeroHoraSemana} {self._ciclo}"
+        return f"{self._id} {self._nombre} {self._codigo} {self._numeroHoraSemanal} {self._ciclo}"

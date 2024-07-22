@@ -407,7 +407,7 @@ class Linked_List(object):
         else:  
             array = self.toArray
             for i in range(0, len(array)):
-                if array[i].lower().__contains__(data.lower()):  # < > <= >= !=  == startswith() endswith()
+                if array[i].lower().__contains__(data.lower()):  
                     list.addNode(array[i], list._length)
         return list  
     
