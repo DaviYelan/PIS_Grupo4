@@ -39,10 +39,10 @@ class Docente(Persona):
     @_cubiculo.setter
     def _cubiculo(self, value):
         self.__cubiculo = value
+
     @property
     def serializable(self):
         return {
-            "id": self._id,
             "nombre": self._nombre,
             "apellido": self._apellido,
             "fecha": self._fecha,
@@ -53,24 +53,24 @@ class Docente(Persona):
             "tituloCuartoNivel": self._tituloCuartoNivel,
             "especialidad": self._especialidad,
             "cubiculo": self._cubiculo
-       
         }
 
     @classmethod
-    def deserializar(self, data):
+    def deserializar(cls, data):
         docente = Docente()
-        docente._id = data["id"]
-        docente._nombre = data["nombre"]
-        docente._apellido = data["apellido"]
-        docente._fecha = data["fecha"]
-        docente._telefono = data["telefono"]
-        docente._genero = data["genero"]
-        docente._correo = data["correo"]
-        docente._tipoIdentificacion = data["tipoIdentificacion"]
-        docente._tituloCuartoNivel = data["tituloCuartoNivel"]
-        docente._especialidad = data["especialidad"]
-        docente._cubiculo = data["cubiculo"]
+        docente._id = data.get("ID", 0)  
+        docente._nombre = data.get("NOMBRE", "")
+        docente._apellido = data.get("APELLIDO", "")
+        docente._fecha = data.get("FECHA", "")
+        docente._telefono = data.get("TELEFONO", "")
+        docente._genero = data.get("GENERO", "")
+        docente._correo = data.get("CORREO", "")
+        docente._tipoIdentificacion = data.get("TIPOIDENTIFICACION", "")
+        docente._tituloCuartoNivel = data.get("TITULOCUARTONIVEL", "")
+        docente._especialidad = data.get("ESPECIALIDAD", "")
+        docente._cubiculo = data.get("CUBICULO", "")
         return docente
-    
+
+
     def __str__(self):
         return f"{super().__str__()} Titulo de cuarto nivel: {self._tituloCuartoNivel} Especialidad: {self._especialidad} Cubiculo: {self._cubiculo}"

@@ -2,17 +2,20 @@
 .home {
     padding: 50px 20px;
     text-align: center;
+    background-image: url(/static/staticAdmin/img/unlLogin.jpg);
+    background-size: cover;
+
 }
 
 .home h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    color: #555; /* Color de texto predeterminado */
+    color: #555; 
 }
 
 .home p {
     font-size: 1.1rem;
-    color: #555; /* Color de texto predeterminado */
+    color: #555; 
     margin-bottom: 40px;
 }
 
@@ -30,7 +33,7 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    background-color: #fff; /* Color de fondo predeterminado */
+    background-color: #fff; 
 }
 
 .feature:hover {
@@ -51,13 +54,13 @@
 
 .feature p {
     font-size: 1rem;
-    color: #666; /* Color de texto predeterminado */
+    color: #666; 
 }
 
 /* Estilos para modo oscuro */
 body.dark-mode {
     background-color: #333;
-    color: #ccc; /* Color de texto para modo oscuro */
+    color: #ccc; 
 }
 
 body.dark-mode .feature {
@@ -79,5 +82,5 @@ body.dark-mode .feature:hover {
 
 .text-column {
     flex: 1;
-    margin-right: 20px; /* Espacio entre las dos columnas */
+    margin-right: 20px;
 }

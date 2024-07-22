@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='/staticEstudiante/css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/staticEstudiante/css/area.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/staticAdmin/css/franco.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='/staticEstudiante/img/SOL.png')}}" />
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>SOL</title>
+</head>
+
+<body>
+
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="{{url_for('static', filename='/staticEstudiante/img/SOL.png')}}" alt="">
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name">SOL</span>
+                    <span class="profession">Estudiante</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="search-box">
+                        <i class=''></i>
+                        <input type="text" placeholder="">
+                    </li>
+                    <li class="nav-link">
+                        <a href="/login/moduloEstudiantes">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Area Principal</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/sala">
+                            <i class='bx bx-chat icon'></i>
+                            <span class="text nav-text">Enviar Reporte</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <ul>
+                    <li>
+                        <a href="/logout">
+                            <i class='bx bx-log-out icon'></i>
+                            <span class="text nav-text">Cerrar Sesion</span>
+                        </a>
+                    </li>
+
+                    <li class="mode">
+                        <div class="sun-moon">
+                            <i class='bx bx-moon icon moon'></i>
+                            <i class='bx bx-sun icon sun'></i>
+                        </div>
+                        <span class="mode-text text">Dark mode</span>
+                        <div class="toggle-switch">
+                            <span class="switch"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="home">
+        <div class="main-content">
+            {% block content %}
+            <!-- Selector de Periodo Académico y Ciclo -->
+            <div class="filter-section">
+                <h1>Revisión de Reportes</h1>
+                <div class="filters">
+                    <label for="periodo-academico">Periodo Académico:</label>
+                    <select id="periodo-academico">
+                        <option value="2022-09-2023-07">Septiembre 2022 - Julio 2023</option>
+                        <option value="2023-09-2024-07">Septiembre 2023 - Julio 2024</option>
+                        <!-- Agregar más periodos aquí -->
+                    </select>
+                    <label for="ciclo">Ciclo:</label>
+                    <select id="ciclo">
+                        <option value="1">Ciclo 1</option>
+                        <option value="2">Ciclo 2</option>
+                        <option value="3">Ciclo 3</option>
+                    </select>
+                    <button class="btn" onclick="filterReports()">Filtrar</button>
+                </div>
+            </div>
+
+            <!-- Listado de Reportes -->
+            <div class="reports-list">
+                <h2>Lista de Reportes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Reporte ID</th>
+                            <th>Docente</th>
+                            <th>Materia</th>
+                            <th>Ciclo</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Ejemplo de reporte, estos datos deberían ser dinámicos -->
+                        <tr>
+                            <td>001</td>
+                            <td>Juan Pérez</td>
+                            <td>Matemática</td>
+                            <td>1</td>
+                            <td>15-JUL-2024</td>
+                            <td>
+                                <button class="btn" onclick="viewReport(1)">Ver</button>
+                                <button class="btn" onclick="downloadReport(1)">Descargar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>María Gómez</td>
+                            <td>Lengua</td>
+                            <td>1</td>
+                            <td>16-JUL-2024</td>
+                            <td>
+                                <button class="btn" onclick="viewReport(2)">Ver</button>
+                                <button class="btn" onclick="downloadReport(2)">Descargar</button>
+                            </td>
+                        </tr>
+                        <!-- Más reportes aquí -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Panel de Detalles del Reporte -->
+            <div class="report-details">
+                <h2>Detalles del Reporte</h2>
+                <div id="details">
+                    <!-- Detalles del reporte seleccionado se mostrarán aquí -->
+                    <p>Seleccione un reporte para ver más detalles.</p>
+                </div>
+            </div>
+
+            <!-- Opciones de Acción -->
+            <div class="action-buttons">
+                <button class="btn" onclick="clearFilters()">Limpiar Filtros</button>
+                <button class="btn" onclick="printReports()">Imprimir Reportes</button>
+            </div>
+            {% endblock %}
+        </div>
+    </section>
+
+
+    <style>
+        .filter-section h1 {
+            color: #000000;
+            /* Negro */
+        }
+
+        .report-details h2 {
+            color: #000000;
+            /* Negro */
+        }
+
+        .reports-list h2 {
+            color: #000000;
+            /* Negro */
+        }
+
+        .home {
+            background-image: url("{{url_for('static', filename='/staticAdmin/images/b.jpg')}}");
+            background-size: cover;
+            /* Ajusta la imagen para que cubra todo el contenedor */
+            background-position: center;
+            /* Centra la imagen */
+            background-repeat: no-repeat;
+            /* Evita que la imagen se repita */
+            padding: 35px;
+            color: #000000;
+            /* Cambia el color del texto para que contraste con la imagen */
+        }
+
+        .main-content {
+            max-width: 1500px;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.5);
+            /* Fondo semi-transparente para el contenido */
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            /* Color azul para los botones */
+            color: #881313;
+            /* Texto blanco */
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            /* Azul más oscuro al pasar el mouse */
+        }
+
+        .btn:active {
+            background-color: #004080;
+            /* Azul aún más oscuro cuando se hace clic */
+        }
+
+        /* Tema claro */
+        .theme-light .home {
+            background-color: #941b1b;
+            /* Fondo blanco para tema claro */
+            color: #000000;
+            /* Texto negro para tema claro */
+        }
+
+        /* Tema oscuro */
+        .theme-dark .home {
+            background-color: #000000;
+            /* Fondo negro para tema oscuro */
+            color: #ffffff;
+            /* Texto blanco para tema oscuro */
+        }
+    </style>
+    <script>
+        function filterReports() {
+            function filterReports() {
+                const periodoAcademico = document.getElementById('periodo-academico').value;
+                const ciclo = document.getElementById('ciclo').value;
+
+                // Aquí debes implementar la lógica para filtrar los reportes
+                console.log(`Filtrando reportes por: Periodo Académico: ${periodoAcademico}, Ciclo: ${ciclo}`);
+            }
+        }
+
+        function viewReport(id) {
+            // Función para ver detalles del reporte
+            // Implementar lógica para mostrar detalles del reporte seleccionado
+            document.getElementById('details').innerHTML = `<p>Detalles del Reporte ${id}...</p>`;
+        }
+
+        function downloadReport(id) {
+            // Función para descargar el reporte
+            // Implementar lógica para descargar el reporte seleccionado
+            alert('Descargando Reporte ' + id);
+        }
+
+        function clearFilters() {
+            // Función para limpiar los filtros
+            document.getElementById('ciclo').value = '';
+            document.getElementById('materia').value = '';
+            filterReports(); // Volver a cargar reportes sin filtros
+        }
+
+        function printReports() {
+            // Función para imprimir reportes
+            window.print();
+        }
+    </script>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Obtener el modal
+            var modal = document.getElementById("observaciones-modal");
+
+            // Obtener el botón que abre el modal
+            var btn = document.getElementById("observaciones-button");
+
+            // Cuando el usuario hace clic en el botón, abre el modal
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+
+            // Cuando el usuario hace clic fuera del modal, lo cierra
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            // Manejar el envío del formulario
+            document.getElementById("submit-observaciones").onclick = function (event) {
+                event.preventDefault();
+                var email = document.getElementById("email").value;
+                var observaciones = document.getElementById("observaciones").value;
+                if (email && observaciones) {
+                    alert("Observaciones enviadas:\n\nCorreo: " + email + "\nObservaciones: " + observaciones);
+                    modal.style.display = "none";
+                } else {
+                    alert("Por favor complete todos los campos.");
+                }
+            }
+
+
+        });
+    </script>
+    <script src="{{url_for('static', filename='/staticEstudiante/js/area.js')}}"></script>
+    <script src="{{url_for('static', filename='/staticEstudiante/js/script.js')}}"></script>
+</body>
+
+</html>

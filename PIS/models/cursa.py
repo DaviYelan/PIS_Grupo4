@@ -3,10 +3,6 @@ class Cursa:
     def __init__(self):
         self.__id = 0
         self.__paralelo = ""
-        self.__idEstudiante = 0
-        self.__idAsignacion = 0
-
-
     @property
     def _id(self):
         return self.__id
@@ -44,17 +40,14 @@ class Cursa:
         return {
             "id": self._id,
             "paralelo": self._paralelo,
-            "idEstudiante": self._idEstudiante,
-            "idAsignacion": self._idAsignacion
         }
 
-    def deserializar(data):
+    @classmethod
+    def deserializar(cls, data):
         cursa = Cursa()
-        cursa._id = data["id"]
-        cursa._paralelo = data["paralelo"]
-        cursa._idEstudiante = data["idEstudiante"]
-        cursa._idAsignacion = data["idAsignacion"]
+        cursa._id = data.get("ID", 0)
+        cursa._paralelo = data.get("PARALELO", "")
         return cursa
     
     def __str__(self):
-        return f"{self._id} {self._paralelo} {self._idEstudiante} {self._idAsignacion}"
+        return f"{self._id} {self._paralelo}"

@@ -1,6 +1,17 @@
 from werkzeug.security import check_password_hash
-from flask_login import UserMixin # type: ignore
-from models.cuenta import Cuenta 
+from flask_login import UserMixin #type: ignore
+import cx_Oracle #type: ignore
+
+class Cuenta(UserMixin):
+    def __init__(self, id, correo, clave, rol=None):
+        self.id = id
+        self.correo = correo
+        self.clave = clave
+        self.rol = rol
+
+    @classmethod
+    def check_password(cls, hashed_password, clave):
+        return check_password_hash(hashed_password, clave)
 
 class ModelCuenta:
     @classmethod

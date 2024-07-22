@@ -1,63 +1,221 @@
 {% extends "tempsAdmin/index.html" %}
 {% block content %}
-<div class="custom-container">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="custom-container mt-5">
     <div class="card shadow-lg p-4">
-        <h3 class="text-black text-center mb-4">Lista de Docentes</h3>
-        <div class="d-grid gap-2 mb-3">
-            <a href="/docentes/ver" class="btn btn-success d-flex align-items-center justify-content-center"
-                style="height: 50px;" type="button">Agregar Docente</a>
+        <h3 class="text-black text-center mb-4 fw-bold">Lista de Docentes</h3>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+            <input type="text" id="searchInput" class="form-control me-2" onkeyup="searchTable()" placeholder="Buscar...">
+            <select id="sortSelect" class="form-select me-2" onchange="sortTable()">
+                <option value="nombre-asc">Ordenar por Nombre (Ascendente)</option>
+                <option value="nombre-desc">Ordenar por Nombre (Descendente)</option>
+                <option value="apellido-asc">Ordenar por Apellido (Ascendente)</option>
+                <option value="apellido-desc">Ordenar por Apellido (Descendente)</option>
+                <option value="fecha-asc">Ordenar por Fecha (Ascendente)</option>
+                <option value="fecha-desc">Ordenar por Fecha (Descendente)</option>
+            </select>
+            <a href="/docentes/ver" class="btn btn-success btn-sm" type="button">Agregar Docente</a>
         </div>
-        <table id="tabla" class="table table-striped table-bordered text-black">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Docente Nro</th>
-                    <th>Apellido</th>
-                    <th>Nombre</th>
-                    <th>Telefono</th>
-                    <th>Correo</th>
-                    <th>Fecha</th>
-                    <th>Género</th>
-                    <th>Tipo Identificación</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in lista %}
-                <tr>
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.apellido }}</td>
-                    <td>{{ item.nombre }}</td>
-                    <td>{{ item.telefono }}</td>
-                    <td>{{ item.correo }}</td>
-                    <td>{{ item.fecha}}</td>
-                    <td>{{ item.genero }}</td>
-                    <td>{{ item.tipoIdentificacion }}</td>
-                    <td>
-                        <a href="/registrarDocentes/editar/{{ item.id }}" class="btn btn-info btn-sm">Modificar</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-container">
+            <table id="tabla" class="table table-striped table-bordered text-black">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Docente Nro</th>
+                        <th>Apellido</th>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th class="fecha-col">Fecha</th>
+                        <th>Género</th>
+                        <th>Tipo Identificación</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="docente-list">
+                    {% if lista %}
+                    {% for item in lista %}
+                    <tr id="docente-{{ item._id }}">
+                        <td>{{ item._id }}</td>
+                        <td>{{ item._apellido }}</td>
+                        <td>{{ item._nombre }}</td>
+                        <td>{{ item._telefono }}</td>
+                        <td>{{ item._correo }}</td>
+                        <td>{{ item._fecha.strftime('%Y-%m-%d') if item._fecha else '' }}</td>
+                        <td>{{ item._genero }}</td>
+                        <td>{{ item._tipoIdentificacion }}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="/registrarDocentes/editar/{{ item._id }}" class="btn btn-info btn-sm">Modificar</a>
+                                <button class="btn btn-danger btn-sm eliminar-btn" data-id="{{ item._id }}">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="9" class="text-center">No hay datos disponibles</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
+<script>
+    $(document).ready(function() {
+        $('.eliminar-btn').on('click', function() {
+            const id = $(this).data('id');
+            if (confirm('¿Estás seguro de que quieres eliminar este docente?')) {
+                $.ajax({
+                    url: '/registrarDocentes/eliminar/' + id,
+                    method: 'POST',
+                    success: function(response) {
+                        if (response.success) {
+                            $('#docente-' + id).remove();
+                            updateTableNumbers();
+                        } else {
+                            alert('Error al eliminar: ' + response.error);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error en la solicitud AJAX:', status, error);
+                    }
+                });
+            }
+        });
+    });
+
+    function updateTableNumbers() {
+        $('#docente-list tr').each(function(index) {
+            $(this).find('td').first().text(index + 1); // Actualiza el número del docente en la primera columna
+            $(this).attr('id', 'docente-' + (index + 1)); // Actualiza el ID de la fila
+        });
+    }
+
+    function searchTable() {
+        var input, filter, table, tr, td, i, j, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("tabla");
+        tr = table.getElementsByTagName("tr");
+        for (i = 1; i < tr.length; i++) {
+            tr[i].style.display = "none";
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    function sortTable() {
+        var table, rows, switching, i, x, y, shouldSwitch, sortOption;
+        table = document.getElementById("tabla");
+        switching = true;
+        sortOption = document.getElementById("sortSelect").value;
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                if (sortOption.includes('nombre')) {
+                    x = rows[i].getElementsByTagName("TD")[2]; // Index 2 for "Nombre" column
+                    y = rows[i + 1].getElementsByTagName("TD")[2];
+                } else if (sortOption.includes('apellido')) {
+                    x = rows[i].getElementsByTagName("TD")[1]; // Index 1 for "Apellido" column
+                    y = rows[i + 1].getElementsByTagName("TD")[1];
+                } else if (sortOption.includes('fecha')) {
+                    x = rows[i].getElementsByTagName("TD")[5]; // Index 5 for "Fecha" column
+                    y = rows[i + 1].getElementsByTagName("TD")[5];
+                }
+
+                if (sortOption.endsWith('asc')) {
+                    if (sortOption.includes('fecha')) {
+                        if (new Date(x.innerHTML) > new Date(y.innerHTML)) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (sortOption.endsWith('desc')) {
+                    if (sortOption.includes('fecha')) {
+                        if (new Date(x.innerHTML) < new Date(y.innerHTML)) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+</script>
 <style>
+    body {
+        background-color: #f8f9fa;
+    }
+
     .custom-container {
-        position: absolute;
-        top: 50px;
-        left: 50px;
-        max-width: 1000px;
-        width: 100%;
+        max-width: 1400px; /* Aumenta el ancho máximo del contenedor */
+        margin: auto;
         background-color: #fff;
-        border: 1px solid #ccc;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
         border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .card {
-        margin: 0;
+        border: none;
+        border-radius: 1rem;
+    }
+
+    h3 {
+        font-size: 24px;
+        color: #343a40;
+    }
+
+    .btn {
+        border-radius: 1rem;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        color: #fff;
+    }
+
+    .btn-sm {
+        padding: .25rem .5rem; /* Ajusta el tamaño del botón */
+        font-size: .875rem;
     }
 
     .table {
@@ -77,11 +235,30 @@
         color: #fff;
     }
 
-    .btn-sm {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.875rem;
-        line-height: 1.5;
-        border-radius: 0.2rem;
+    .form-control {
+        border-radius: 1rem;
+    }
+
+    .table-container {
+        overflow-x: hidden; /* Evita el desplazamiento horizontal */
+    }
+
+    .fecha-col {
+        width: 150px; /* Ajusta el ancho de la columna de fecha */
+    }
+
+    @media (max-width: 768px) {
+        .d-md-flex {
+            flex-direction: column;
+        }
+
+        .me-2 {
+            margin-bottom: 10px;
+        }
+
+        .custom-container {
+            padding: 10px;
+        }
     }
 </style>
 {% endblock %}

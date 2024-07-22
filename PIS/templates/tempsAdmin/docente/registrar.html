@@ -7,6 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='/staticAdmin/css/gestion.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <style>
+      .booking-form-body {
+        padding: 2rem;
+      }
+      .form-control {
+        width: 100%;
+      }
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      .submit-btn {
+        margin-top: 2rem;
+      }
+    </style>
   </head>
   <body>
     <div class="text-center">
@@ -16,21 +30,21 @@
           <div class="row">
             <div class="col-lg-6 col-12 form-group">
               <label for="nombre">Nombre</label>
-              <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ingresa tus Nombres" required>
+              <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ingresa Nombres" required>
             </div>
             <div class="col-lg-6 col-12 form-group">
               <label for="apellido">Apellido</label>
-              <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Ingresa tus Apellidos" required>
+              <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Ingresa Apellidos" required>
             </div>
             <div class="col-lg-6 col-12 form-group">
-              <label for="telefono">Telefono</label>
-              <input type="text" id="telefono" name="telefono" class="form-control" placeholder="Ingresa tu número de teléfono" required>
+              <label for="telefono">Teléfono</label>
+              <input type="text" id="telefono" name="telefono" class="form-control" placeholder="Ingresa número de teléfono" required>
             </div>
             <div class="col-lg-6 col-12 form-group">
               <label for="correo">Correo</label>
-              <input type="text" id="correo" name="correo" class="form-control" placeholder="Ingresa tu correo" required>
+              <input type="email" id="correo" name="correo" class="form-control" placeholder="Ingresa correo" required>
             </div>
-            <div class="col-lg-6 col-12 form-group" id="date" data-target-input="nearest">
+            <div class="col-lg-6 col-12 form-group">
               <label for="fecha">Fecha</label>
               <input type="date" id="fecha" name="fecha" class="form-control" required>
             </div>
@@ -45,21 +59,53 @@
             </div>
             <div class="col-lg-6 col-12 form-group">
               <label for="tipoIdentificacion">Tipo de Identificación</label>
-              <select id="tipoIdentificacion" name="tipoIdentificacion" class="form-control" required>
-                <option selected>Seleccione el Tipo de Identificación</option>
+              <select id="tipoIdSelect" name="tipoIdSelect" class="form-control" onchange="updatePlaceholder()" required>
+                <option value="" selected>Seleccione el Tipo de Identificación</option>
                 <option value="CEDULA">CÉDULA</option>
                 <option value="PASAPORTE">PASAPORTE</option>
+                <option value="RUC">RUC</option>
+                <option value="LICENCIA">LICENCIA CONDUCIR</option>
                 <option value="OTROS">OTROS</option>
               </select>
+              <input type="text" id="tipoIdentificacion" name="tipoIdentificacion" class="form-control" placeholder="Ingrese el valor aquí" required>
             </div>
-            <div class="col-lg-4 col-md-10 col-8 mx-auto mt-2 submit-btn">
-              <button id="boton" type="submit" class="form-control btn btn-success">Guardar</button>
+            <div class="col-lg-6 col-12 form-group">
+              <label for="tituloCuartoNivel">Título de Cuarto Nivel</label>
+              <input type="text" id="tituloCuartoNivel" name="tituloCuartoNivel" class="form-control" placeholder="Ingresa tu título de cuarto nivel" required>
+            </div>
+            <div class="col-lg-6 col-12 form-group">
+              <label for="especialidad">Especialidad</label>
+              <input type="text" id="especialidad" name="especialidad" class="form-control" placeholder="Ingresa tu especialidad" required>
+            </div>
+            <div class="col-lg-6 col-12 form-group">
+              <label for="cubiculo">Cubículo</label>
+              <input type="text" id="cubiculo" name="cubiculo" class="form-control" placeholder="Ingresa tu cubículo" required>
+            </div>
+            <div class="col-lg-6 col-12 form-group submit-btn">
+              <button id="boton" type="submit" class="btn btn-success btn-block">Guardar</button>
             </div>
           </div>
         </form>
       </div>
     </div>
     <script src="{{url_for('static', filename='/staticAdmin/js/script.js')}}"></script>
+    <script>
+      function updatePlaceholder() {
+        var select = document.getElementById('tipoIdSelect');
+        var input = document.getElementById('tipoIdentificacion');
+        var selectedOption = select.options[select.selectedIndex];
+        
+        if (selectedOption.value) {
+          input.disabled = false;
+          input.placeholder = "Ingrese el " + selectedOption.text.toLowerCase();
+        } else {
+          input.disabled = true;
+          input.placeholder = "Ingrese el valor aquí";
+        }
+      }
+      // Inicialmente deshabilitar el input
+      document.getElementById('tipoIdentificacion').disabled = true;
+    </script>
   </body>
 </html>
 {% endblock %}

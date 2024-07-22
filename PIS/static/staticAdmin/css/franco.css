@@ -1,0 +1,186 @@
+.home {
+    background-color: #fff;
+    padding: 20px;
+}
+
+.main-content {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Sección de Filtros */
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filters {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.filters label {
+    font-weight: bold;
+}
+
+.filters select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.filters button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease;
+}
+
+.filters button:hover {
+    background-color: #0056b3;
+}
+
+/* Listado de Reportes */
+.reports-list {
+    margin-bottom: 20px;
+}
+
+.reports-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.reports-list th,
+.reports-list td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.reports-list th {
+    background-color: #f4f4f4;
+}
+
+.reports-list button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-right: 5px;
+    transition: background 0.3s ease;
+}
+
+.reports-list button:hover {
+    background-color: #0056b3;
+}
+
+/* Detalles del Reporte */
+.report-details {
+    margin-bottom: 20px;
+}
+
+.report-details h2 {
+    color: #333;
+}
+
+#details {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones de Acción */
+.action-buttons {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.action-buttons .btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease;
+}
+
+.action-buttons .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Dark mode styles */
+body.dark .home {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark .filters label {
+    color: #fff;
+}
+
+body.dark .filters select {
+    background-color: #555;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+body.dark .filters button {
+    background-color: #444;
+    color: #fff;
+}
+
+body.dark .filters button:hover {
+    background-color: #666;
+}
+
+body.dark .reports-list table {
+    background-color: #444;
+    color: #fff;
+}
+
+body.dark .reports-list th {
+    background-color: #555;
+}
+
+body.dark .reports-list td {
+    border-bottom: 1px solid #666;
+}
+
+body.dark .reports-list button {
+    background-color: #555;
+    color: #fff;
+}
+
+body.dark .reports-list button:hover {
+    background-color: #777;
+}
+
+body.dark .report-details h2 {
+    color: #fff;
+}
+
+body.dark #details {
+    background-color: #444;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+body.dark .action-buttons .btn {
+    background-color: #555;
+    color: #fff;
+}
+
+body.dark .action-buttons .btn:hover {
+    background-color: #777;
+}
