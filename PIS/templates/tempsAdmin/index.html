@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- CSS -->
-    <link rel="stylesheet" href="{{url_for('static', filename='/staticAdmin/css/style.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='/staticAdmin/css/area.css')}}">
-    <link rel="shortcut icon" href="{{url_for('static',filename='/staticAdmin/img/SOL.png')}}" />
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{url_for('static', filename='/staticDocente/css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/staticDocente/css/area.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/staticDocente/css/excel.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='/staticEstudiante/img/SOL.png')}}" />
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>    
 
     <title>SOL</title>
 </head>
-
-<body class="{{ 'dark' if dark_mode else '' }}">
-
-    <nav class="sidebar">
+<body>
+    <nav class="sidebar close">
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="{{url_for('static', filename='/staticAdmin/img/SOL.png')}}" alt="">
+                    <img src="{{url_for('static', filename='/staticEstudiante/img/SOL.png')}}" alt="">
                 </span>
+
                 <div class="text logo-text">
                     <span class="name">SOL</span>
-                    <span class="profession">Administrador</span>
+                    <span class="profession">Docente</span>
                 </div>
             </div>
             <i class='bx bx-chevron-right toggle'></i>
@@ -35,21 +33,16 @@
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="/accionDocente">
-                            <i class='bx bxs-user-pin icon'></i>
-                            <span class="text nav-text">Docentes</span>
+                        <a href="#">
+                            <i class='bx bxs-graduation icon'></i>
+                            <span class="text nav-text">Area Principal</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="/accionMateria">
-                            <i class='bx bx-book-reader icon'></i>
-                            <span class="text nav-text">Materias</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="/asignarMaestro">
-                            <i class='bx bx-food-menu icon'></i>
-                            <span class="text nav-text">Gestión</span>
+                        <a href="/login/moduloDocentes/reportes">
+                            <i class='bx bxs-graduation icon'></i>
+                            <span class="text nav-text">Reportes</span>
+
                         </a>
                     </li>
                 </ul>
@@ -63,12 +56,13 @@
                             <span class="text nav-text">Cerrar Sesión</span>
                         </a>
                     </li>
+
                     <li class="mode">
                         <div class="sun-moon">
                             <i class='bx bx-moon icon moon'></i>
                             <i class='bx bx-sun icon sun'></i>
                         </div>
-                        <span class="mode-text text">Ligth Mode</span>
+                        <span class="mode-text text">Dark mode</span>
                         <div class="toggle-switch">
                             <span class="switch"></span>
                         </div>
@@ -79,68 +73,109 @@
     </nav>
 
     <section class="home">
-        <div class="main-content">
-            {% block content %}
-            <div class="text-column">
-                <h1>Bienvenido a Sol</h1>
-                <p>¡Gestiona el rendimiento académico de tus estudiantes de manera eficiente!</p>
-                <div class="features">
-                    <div class="feature">
-                        <i class='bx bx-calendar-check'></i>
-                        <h2>Calendario Académico</h2>
-                        <p>Organiza tus fechas importantes como exámenes, entregas de proyectos escolares.</p>
-                    </div>
-                    <div class="feature">
-                        <i class='bx bx-book-open'></i>
-                        <h2>Calificaciones</h2>
-                        <p>Consulta las notas de forma fácil y rápida.</p>
-                    </div>
-                    <div class="feature">
-                        <i class='bx bx-chat'></i>
-                        <h2>Notificaciones</h2>
-                        <p>Comparte mensajes importantes y mantente conectado.</p>
-                    </div>
+        <div class="form-container">
+            <form id="form-data">
+                <div class="form-group">
+                    <label for="cycle-select">Ciclo:</label>
+                    <select id="ciclo" name="ciclo">
+                        <option value="1">Ciclo 1</option>
+                        <option value="2">Ciclo 2</option>
+                        <option value="3">Ciclo 3</option>
+                    </select>
+                    <label for="materia">Materia:</label>
+                    <select id="materia" name="materia">
+                        <option value="1">Algebra Lineal</option>
+                        <option value="2">Analisis Matematico</option>
+                        <option value="3">Estructura de Datos</option>
+                    </select>
+                    <button type="submit">Seleccionar</button>
                 </div>
-                <h1>Además presentamos nuestra sala de chat en donde podrás interactuar en tiempo real con tus docentes</h1>
-                <div>
-                    <style>
-                        .chat-button {
-                            display: inline-block;
-                            padding: 15px 25px;
-                            font-size: 16px;
-                            font-weight: bold;
-                            color: #fff;
-                            background-color: #007BFF;
-                            border: none;
-                            border-radius: 8px;
-                            text-align: center;
-                            text-decoration: none;
-                            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-                            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                        }
+            </form>
+        </div>
 
-                        .chat-button:hover {
-                            background-color: #0056b3;
-                            transform: translateY(-2px);
-                            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-                        }
+        <div class="units-container">
+            <div class="unit-section">
+                <h2>Unidad 1</h2>
+                <div class="form-group">
+                    <button type="button" onclick="uploadExcel(1)" id="upload-button-1">Elegir Excel para Unidad
+                        1</button>
+                    <input type="file" id="file-upload-1" style="display:none" accept=".xlsx, .xls"
+                        onchange="handleFileSelect(1)">
+                </div>
+                <div class="table-container" id="table-container-1">
 
-                        .chat-button:active {
-                            background-color: #004494;
-                            transform: translateY(0);
-                            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                        }
-                    </style>
-                    <a href="/registro" id="chat-button" class="chat-button">SALA DE CHAT</a>
                 </div>
             </div>
-            {% endblock %}
+
+            <div class="unit-section">
+                <h2>Unidad 2</h2>
+                <div class="form-group">
+                    <button type="button" onclick="uploadExcel(2)" id="upload-button-2">Elegir Excel para Unidad
+                        2</button>
+                    <input type="file" id="file-upload-2" style="display:none" accept=".xlsx, .xls"
+                        onchange="handleFileSelect(2)">
+                </div>
+                <div class="table-container" id="table-container-2">
+
+                </div>
+            </div>
+
+            <div class="unit-section">
+                <h2>Unidad 3</h2>
+                <div class="form-group">
+                    <button type="button" onclick="uploadExcel(3)" id="upload-button-3">Elegir Excel para Unidad
+                        3</button>
+                    <input type="file" id="file-upload-3" style="display:none" accept=".xlsx, .xls"
+                        onchange="handleFileSelect(3)">
+                </div>
+                <div class="table-container" id="table-container-3">
+
+                </div>
+            </div>
+        </div>
+
+        <form id="filter-form">
+            <label for="average-select">Categoría:</label>
+            <select id="average-select" name="average">
+                <option value="">Todas</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+            <label for="matricula-select">Matrícula:</label>
+            <select id="matricula-select" name="matricula">
+                <option value="">Todas</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <button type="button" class="action-button filter-btn" onclick="applyFilter()">
+                <i class="bx bx-filter-alt"></i> Filtrar
+            </button>
+            <!-- <button type="button" onclick="applyFilter()">Filtrar</button> -->
+        </form>
+
+        <div id="filtered-results-container" class="table-container"></div>
+
+        <div id="buttons-container">
+            <button onclick="downloadExcel()">Descargar Excel</button>
+            <!-- <button onclick="downloadPDF()">Descargar PDF</button> -->
+            <button onclick="sendReport('final')">Enviar reporte final</button>
         </div>
     </section>
-
-    <script src="{{url_for('static', filename='/staticAdmin/js/area.js')}}"></script>
-    <script src="{{url_for('static', filename='/staticAdmin/js/script.js')}}"></script>
-    <script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.full.min.js"></script>
+    <script src="{{url_for('static', filename='/staticDocent/js/area.js')}}"></script>
+    <script src="{{url_for('static', filename='/staticDocente/js/script.js')}}"></script>
+    <script src="{{url_for('static', filename='/staticDocente/js/excel.js')}}"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("your_user_id");
+        })();
+    </script>
+     <script>
         // JavaScript para alternar el modo oscuro
         document.addEventListener("DOMContentLoaded", function() {
             const modeSwitch = document.querySelector(".toggle-switch");
@@ -166,5 +201,4 @@
         });
     </script>
 </body>
-
 </html>
